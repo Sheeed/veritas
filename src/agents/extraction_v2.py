@@ -6,6 +6,7 @@ Features:
 - Chain-of-Thought: Strukturiertes Reasoning
 - Confidence Calibration: Realistische Konfidenzwerte
 - Anti-Hallucination: Strikte Quellenprüfung
+- Multi-Provider: OpenAI, Groq (kostenlos), Mistral
 """
 
 import asyncio
@@ -14,7 +15,6 @@ import logging
 import re
 from typing import Any
 
-from openai import AsyncOpenAI
 from pydantic import ValidationError
 
 from src.config import get_settings
@@ -23,6 +23,7 @@ from src.models.schema import (
     SourceLabel,
 )
 from src.agents.prompts_v2 import PromptBuilder
+from src.llm.client import LLMClient, get_llm_client
 
 logger = logging.getLogger(__name__)
 
@@ -31,23 +32,37 @@ class ExtractionAgentV2:
     """
     Verbesserter Extraction Agent mit Self-Consistency.
     
-    Führt mehrfache Extraktionen durch und bildet einen Konsens
-    für robustere Ergebnisse.
+    Unterstuetzt mehrere LLM Provider:
+    - OpenAI (GPT-4o)
+    - Groq (Llama 3.3 70B) - KOSTENLOS
+    - Mistral
+    
+    Fuehrt mehrfache Extraktionen durch und bildet einen Konsens
+    fuer robustere Ergebnisse.
     """
     
     def __init__(
         self,
+        provider: str | None = None,
         model: str | None = None,
         temperature: float = 0.0,
-        num_extractions: int = 1,  # Für Self-Consistency auf 3 setzen
+        num_extractions: int = 1,  # Fuer Self-Consistency auf 3 setzen
         consensus_threshold: float = 0.6,
     ):
         settings = get_settings()
-        self.client = AsyncOpenAI(api_key=settings.openai_api_key)
-        self.model = model or settings.openai_model
+        
+        # Verwende konfigurierten Provider wenn nicht angegeben
+        self.provider = provider or settings.llm_provider
+        self.model = model or settings.get_active_model()
+        
+        # LLM Client initialisieren
+        self.client = get_llm_client(provider=self.provider, model=self.model)
+        
         self.temperature = temperature
         self.num_extractions = num_extractions
         self.consensus_threshold = consensus_threshold
+        
+        logger.info(f"ExtractionAgent initialisiert: {self.provider} / {self.model}")
     
     async def extract_knowledge_graph(
         self,
@@ -84,7 +99,7 @@ class ExtractionAgentV2:
         use_few_shot: bool,
         mark_as_claim: bool,
     ) -> KnowledgeGraphExtraction:
-        """Führt eine einzelne Extraktion durch."""
+        """Fuehrt eine einzelne Extraktion durch."""
         
         messages = PromptBuilder.build_extraction_prompt(
             text=text,
@@ -92,15 +107,14 @@ class ExtractionAgentV2:
             use_few_shot=use_few_shot,
         )
         
-        response = await self.client.chat.completions.create(
-            model=self.model,
+        # Nutze den abstrahierten LLM Client
+        content = await self.client.chat_completion(
             messages=messages,
             temperature=self.temperature,
             max_tokens=4096,
             response_format={"type": "json_object"},
         )
         
-        content = response.choices[0].message.content
         extraction = self._parse_response(content, text)
         
         # Als Claim markieren
@@ -173,15 +187,13 @@ class ExtractionAgentV2:
             use_few_shot=use_few_shot,
         )
         
-        response = await self.client.chat.completions.create(
-            model=self.model,
+        content = await self.client.chat_completion(
             messages=messages,
             temperature=min(temperature, 1.0),
             max_tokens=4096,
             response_format={"type": "json_object"},
         )
         
-        content = response.choices[0].message.content
         return self._parse_response(content, text)
     
     def _build_consensus(
@@ -337,19 +349,16 @@ class ExtractionAgentV2:
         """
         Zerlegt einen Text in atomare Fakten.
         
-        Nützlich für granulare Verifikation.
+        Nuetzlich fuer granulare Verifikation.
         """
         messages = PromptBuilder.build_decomposition_prompt(text)
         
-        response = await self.client.chat.completions.create(
-            model=self.model,
+        content = await self.client.chat_completion(
             messages=messages,
             temperature=0.0,
             max_tokens=2048,
             response_format={"type": "json_object"},
         )
-        
-        content = response.choices[0].message.content
         
         try:
             data = json.loads(content)
@@ -365,17 +374,16 @@ class ExtractionAgentV2:
         extraction2: KnowledgeGraphExtraction,
     ) -> dict[str, Any]:
         """
-        Prüft die Konsistenz zweier Extraktionen.
+        Prueft die Konsistenz zweier Extraktionen.
         
-        Nützlich für Quality Assurance.
+        Nuetzlich fuer Quality Assurance.
         """
         messages = PromptBuilder.build_consistency_prompt(
             extraction1.model_dump(),
             extraction2.model_dump(),
         )
         
-        response = await self.client.chat.completions.create(
-            model=self.model,
+        content = await self.client.chat_completion(
             messages=messages,
             temperature=0.0,
             max_tokens=2048,
@@ -383,7 +391,7 @@ class ExtractionAgentV2:
         )
         
         try:
-            return json.loads(response.choices[0].message.content)
+            return json.loads(content)
         except json.JSONDecodeError:
             return {"error": "Failed to parse consistency check"}
 

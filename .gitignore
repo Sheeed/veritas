@@ -20,11 +20,11 @@ wheels/
 .installed.cfg
 *.egg
 
-# Virtual Environment
-.venv/
+# Virtual Environments
 venv/
 ENV/
 env/
+.venv/
 
 # IDE
 .idea/
@@ -32,37 +32,87 @@ env/
 *.swp
 *.swo
 *~
+.project
+.pydevproject
+.settings/
+
+# Testing
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
 
 # Environment
 .env
 .env.local
 .env.*.local
-
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
-.tox/
-.nox/
-
-# Mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Ruff
-.ruff_cache/
-
-# Jupyter
-.ipynb_checkpoints/
-
-# Neo4j data (if running locally)
-neo4j_data/
+*.local
 
 # Logs
 *.log
 logs/
 
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Neo4j
+data/neo4j/
+plugins/
+
 # OS
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+
+# Temporary
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+
+# Distribution
+*.tar.gz
+*.zip
+
+# ML Models
+*.pkl
+*.pickle
+*.joblib
+*.h5
+*.hdf5
+models/*.bin
+
+# Secrets
+secrets/
+*.pem
+*.key
+
+# Documentation build
+docs/_build/
+site/
+
+# Streamlit
+.streamlit/secrets.toml

@@ -1,0 +1,913 @@
+{
+  "query": "Albert Einstein",
+  "verified": true,
+  "confidence": 0.65,
+  "sources_checked": 3,
+  "sources_found": 1,
+  "highest_tier_found": "tier_1_authority",
+  "results": [
+    {
+      "source_name": "GND (Deutsche Nationalbibliothek)",
+      "source_type": "authority_file",
+      "tier": "tier_1_authority",
+      "found": true,
+      "title": "Einstein, Albert",
+      "url": "https://d-nb.info/gnd/118529579",
+      "extract": "Name: Einstein, Albert | Info: Deutscher Physiker und Pazifist | Born: ['1879-03-14'] | Died: ['1955-04-18'] | Occupation: Physiker, Pazifist, Wissenschaftler",
+      "relevance_score": 0.5,
+      "reliability_score": 0.95,
+      "claim_review": null,
+      "rating": null,
+      "raw_data": {
+        "gender": [
+          {
+            "id": "https://d-nb.info/standards/vocab/gnd/gender#male",
+            "label": "M\u00e4nnlich"
+          }
+        ],
+        "dateOfDeath": [
+          "1955-04-18"
+        ],
+        "placeOfDeath": [
+          {
+            "id": "https://d-nb.info/gnd/4103300-0",
+            "label": "Princeton, NJ"
+          }
+        ],
+        "familialRelationship": [
+          {
+            "id": "https://d-nb.info/gnd/118810928",
+            "label": "Einstein, Eduard"
+          },
+          {
+            "id": "https://d-nb.info/gnd/143075845",
+            "label": "Einstein, Hans Albert"
+          },
+          {
+            "id": "https://d-nb.info/gnd/118688405",
+            "label": "Einstein-Mari\u0107, Mileva"
+          },
+          {
+            "id": "https://d-nb.info/gnd/1376489538",
+            "label": "Einstein, Hermann"
+          },
+          {
+            "id": "https://d-nb.info/gnd/11609026X",
+            "label": "Kayser, Rudolf"
+          },
+          {
+            "id": "https://d-nb.info/gnd/116425725",
+            "label": "Einstein, Alfred"
+          },
+          {
+            "id": "https://d-nb.info/gnd/116425741",
+            "label": "Einstein, Elsa"
+          }
+        ],
+        "type": [
+          "DifferentiatedPerson",
+          "AuthorityResource",
+          "Person"
+        ],
+        "gndSubjectCategory": [
+          {
+            "id": "https://d-nb.info/standards/vocab/gnd/gnd-sc#21.5p",
+            "label": "Personen zu Physik"
+          }
+        ],
+        "oldAuthorityNumber": [
+          "(DE-588a)185770878",
+          "(DE-588a)13745788X",
+          "(DE-588a)118529579",
+          "(DE-101c)311076866",
+          "(DE-588a)135386861",
+          "(DE-588)185770878",
+          "(DE-588c)4013939-6"
+        ],
+        "geographicAreaCode": [
+          {
+            "id": "https://d-nb.info/standards/vocab/gnd/geographic-area-code#XA-DE",
+            "label": "Deutschland"
+          },
+          {
+            "id": "https://d-nb.info/standards/vocab/gnd/geographic-area-code#XA-CH",
+            "label": "Schweiz"
+          },
+          {
+            "id": "https://d-nb.info/standards/vocab/gnd/geographic-area-code#XD-US",
+            "label": "USA"
+          }
+        ],
+        "biographicalOrHistoricalInformation": [
+          "Deutscher Physiker und Pazifist"
+        ],
+        "affiliation": [
+          {
+            "id": "https://d-nb.info/gnd/37531-7",
+            "label": "Koninklijke Nederlandse Akademie van Wetenschappen"
+          },
+          {
+            "id": "https://d-nb.info/gnd/30381-1",
+            "label": "Princeton University"
+          },
+          {
+            "id": "https://d-nb.info/gnd/35495-8",
+            "label": "Preu\u00dfische Akademie der Wissenschaften"
+          },
+          {
+            "id": "https://d-nb.info/gnd/2003658-9",
+            "label": "Akademie der Wissenschaften in G\u00f6ttingen"
+          },
+          {
+            "id": "https://d-nb.info/gnd/1001101-8",
+            "label": "National Academy of Sciences (Washington, DC)"
+          },
+          {
+            "id": "https://d-nb.info/gnd/35019-9",
+            "label": "Acad\u00e9mie des Sciences (Paris)"
+          },
+          {
+            "id": "https://d-nb.info/gnd/136256-2",
+            "label": "Universit\u00e4t Prag (-1882)"
+          },
+          {
+            "id": "https://d-nb.info/gnd/36190-2",
+            "label": "Universit\u00e4t Z\u00fcrich"
+          },
+          {
+            "id": "https://d-nb.info/gnd/118340-0",
+            "label": "Pan-Europa-Union"
+          },
+          {
+            "id": "https://d-nb.info/gnd/15514-7",
+            "label": "K\u00f6nigliche Akademie der Wissenschaften (Berlin)"
+          },
+          {
+            "id": "https://d-nb.info/gnd/35671-2",
+            "label": "Kaiserlich Leopoldinisch-Carolinische Deutsche Akademie der Naturforscher"
+          },
+          {
+            "id": "https://d-nb.info/gnd/2003822-7",
+            "label": "American Academy of Arts and Sciences"
+          },
+          {
+            "id": "https://d-nb.info/gnd/43972-1",
+            "label": "Bund Neues Vaterland"
+          },
+          {
+            "id": "https://d-nb.info/gnd/35311-5",
+            "label": "American Philosophical Society"
+          },
+          {
+            "id": "https://d-nb.info/gnd/35038-2",
+            "label": "Accademia nazionale dei Lincei"
+          },
+          {
+            "id": "https://d-nb.info/gnd/1000125-6",
+            "label": "Akademija nauk SSSR"
+          },
+          {
+            "id": "https://d-nb.info/gnd/2015138-X",
+            "label": "Kaiser-Wilhelm-Gesellschaft zur F\u00f6rderung der Wissenschaften"
+          },
+          {
+            "id": "https://d-nb.info/gnd/31924-7",
+            "label": "The Royal Society of Edinburgh"
+          }
+        ],
+        "academicDegree": [
+          "Prof."
+        ],
+        "publication": [
+          "Geleitw. zu: Reichinstein, David: Grenzfl\u00e4chenvorg\u00e4nge in der unbelebten und belebten Natur",
+          "Mitverf. von: Thomson, Joseph J.: James Clerk Maxwell",
+          "On the method of theoretical physics",
+          "Vier Vorlesungen \u00fcber Relativit\u00e4tstheorie gehalten im Mai 1921 an der Universit\u00e4t Princeton",
+          "\u00c4ther und Relativit\u00e4tstheorie",
+          "Vorw. zu: Freundlich, Erwin F.: Die Grundlagen der Einsteinschen Gravitationstheorie",
+          "\u00dcber die spezielle und die allgemeine Relativit\u00e4tstheorie",
+          "Geometrie und Erfahrung",
+          "Mitverf. von: Lorentz, Hendrik A.: Das Relativit\u00e4tsprinzip"
+        ],
+        "describedBy": {
+          "descriptionLevel": {
+            "id": "https://d-nb.info/standards/vocab/gnd/description-level#1",
+            "label": "Katalogisierungslevel 1"
+          },
+          "dctCreator": {
+            "id": "https://ld.zdb-services.de/resource/organisations/DE-101",
+            "label": "https://ld.zdb-services.de/resource/organisations/DE-101"
+          },
+          "license": {
+            "id": "http://creativecommons.org/publicdomain/zero/1.0/",
+            "label": "http://creativecommons.org/publicdomain/zero/1.0/"
+          },
+          "dateModified": "2025-09-15T14:12:51.000",
+          "id": "https://d-nb.info/gnd/118529579/about",
+          "maintainer": {
+            "id": "https://ld.zdb-services.de/resource/organisations/DE-101",
+            "label": "https://ld.zdb-services.de/resource/organisations/DE-101"
+          }
+        },
+        "gndIdentifier": "118529579",
+        "id": "https://d-nb.info/gnd/118529579",
+        "placeOfActivity": [
+          {
+            "id": "https://d-nb.info/gnd/4068038-1",
+            "label": "Z\u00fcrich"
+          },
+          {
+            "id": "https://d-nb.info/gnd/4005762-8",
+            "label": "Bern"
+          },
+          {
+            "id": "https://d-nb.info/gnd/4005728-8",
+            "label": "Berlin"
+          },
+          {
+            "id": "https://d-nb.info/gnd/4076310-9",
+            "label": "Prag"
+          }
+        ],
+        "preferredName": "Einstein, Albert",
+        "wikipedia": [
+          {
+            "id": "https://de.wikipedia.org/wiki/Albert_Einstein",
+            "label": "https://de.wikipedia.org/wiki/Albert_Einstein"
+          }
+        ],
+        "preferredNameEntityForThePerson": {
+          "forename": [
+            "Albert"
+          ],
+          "surname": [
+            "Einstein"
+          ]
+        },
+        "depiction": [
+          {
+            "copyrighted": false,
+            "license": [
+              {
+                "attributionRequired": false,
+                "name": "Public Domain",
+                "id": "https://creativecommons.org/publicdomain/mark/1.0/",
+                "abbr": "PD"
+              }
+            ],
+            "thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Albert%20Einstein%201947.jpg?width=270",
+            "creatorName": [
+              "Photograph by Oren Jack Turner, Princeton, N.J."
+            ],
+            "publisher": "Wikimedia Commons",
+            "id": "https://commons.wikimedia.org/wiki/Special:FilePath/Albert%20Einstein%201947.jpg",
+            "creditText": [
+              "This image is available from the United States Library of Congress's Prints and Photographs division under the digital ID cph.3b46036.This tag does not indicate the copyright status of the attached work. A normal copyright tag is still required. See Commons:Licensing."
+            ],
+            "url": "https://commons.wikimedia.org/wiki/File:Albert%20Einstein%201947.jpg?uselang=de"
+          }
+        ],
+        "professionOrOccupation": [
+          {
+            "id": "https://d-nb.info/gnd/4045968-8",
+            "label": "Physiker"
+          },
+          {
+            "id": "https://d-nb.info/gnd/4137384-4",
+            "label": "Pazifist"
+          },
+          {
+            "id": "https://d-nb.info/gnd/4066567-7",
+            "label": "Wissenschaftler"
+          }
+        ],
+        "placeOfBirth": [
+          {
+            "id": "https://d-nb.info/gnd/4061529-7",
+            "label": "Ulm"
+          }
+        ],
+        "dateOfBirth": [
+          "1879-03-14"
+        ],
+        "variantNameEntityForThePerson": [
+          {
+            "personalName": [
+              "\u611b\u56e0\u65af\u5766"
+            ]
+          },
+          {
+            "personalName": [
+              "Xa-yan-si-tcan"
+            ]
+          },
+          {
+            "personalName": [
+              "Xal-bhar-kri-xa-yan-si-tcan"
+            ]
+          },
+          {
+            "forename": [
+              "Al\u02b9bert"
+            ],
+            "surname": [
+              "\u0116jn\u0161tejn"
+            ]
+          },
+          {
+            "forename": [
+              "Albert"
+            ],
+            "surname": [
+              "Einstein"
+            ]
+          },
+          {
+            "forename": [
+              "\u0386\u03bb\u03bc\u03c0\u03b5\u03c1\u03c4"
+            ],
+            "surname": [
+              "\u0391\u03b9\u034f\u0308\u03bd\u03c3\u03c4\u03ac\u03b9\u03bd"
+            ]
+          },
+          {
+            "forename": [
+              "Almpert"
+            ],
+            "surname": [
+              "A\u00efnsta\u00efn"
+            ]
+          },
+          {
+            "forename": [
+              "Albert"
+            ],
+            "surname": [
+              "Ejn\u0161tejn"
+            ]
+          },
+          {
+            "forename": [
+              "Al'bert"
+            ],
+            "surname": [
+              "\u0116jn\u0161tejn"
+            ]
+          },
+          {
+            "personalName": [
+              "Aiyinsitan"
+            ]
+          },
+          {
+            "forename": [
+              "\u0622\u0644\u0628\u0631\u062a"
+            ],
+            "surname": [
+              "\u0622\u06cc\u0646\u0634\u062a\u06cc\u0646"
+            ]
+          },
+          {
+            "personalName": [
+              "Aynishtayn"
+            ]
+          },
+          {
+            "forename": [
+              "Albert"
+            ],
+            "surname": [
+              "Einstein"
+            ]
+          },
+          {
+            "personalName": [
+              "Xen-si-than"
+            ]
+          },
+          {
+            "forename": [
+              "\u0100lbirt"
+            ],
+            "surname": [
+              "Ayn\u0161tayn"
+            ]
+          },
+          {
+            "personalName": [
+              "Ainshutain"
+            ]
+          },
+          {
+            "personalName": [
+              "Ainsten"
+            ]
+          },
+          {
+            "forename": [
+              "Alber\u016dt'\u016d"
+            ],
+            "surname": [
+              "Ainsyut'ain"
+            ]
+          },
+          {
+            "personalName": [
+              "Ain\u0161tain"
+            ]
+          },
+          {
+            "forename": [
+              "A-po-t'e"
+            ],
+            "surname": [
+              "Ai-yin-ssu-t'an"
+            ]
+          },
+          {
+            "personalName": [
+              "Einstein"
+            ]
+          },
+          {
+            "forename": [
+              "A."
+            ],
+            "surname": [
+              "\u0116jn\u0161tejn"
+            ]
+          },
+          {
+            "forename": [
+              "\u963f\u5c14\u4f2f\u7279"
+            ],
+            "surname": [
+              "\u7231\u56e0\u65af\u5766"
+            ]
+          },
+          {
+            "forename": [
+              "Albertos"
+            ],
+            "surname": [
+              "A\u00efnsta\u00efn"
+            ]
+          },
+          {
+            "forename": [
+              "A."
+            ],
+            "surname": [
+              "Einstein"
+            ]
+          },
+          {
+            "forename": [
+              "A."
+            ],
+            "surname": [
+              "Ein\u0161teinas"
+            ]
+          },
+          {
+            "forename": [
+              "A."
+            ],
+            "surname": [
+              "Ainshutain"
+            ]
+          },
+          {
+            "forename": [
+              "\u0410\u043b\u044c\u0431\u0435\u0440\u0442"
+            ],
+            "surname": [
+              "\u042d\u0439\u043d\u0448\u0442\u0435\u0439\u043d"
+            ]
+          },
+          {
+            "forename": [
+              "Al'bert"
+            ],
+            "surname": [
+              "Einshtein"
+            ]
+          },
+          {
+            "forename": [
+              "Albert"
+            ],
+            "surname": [
+              "Ajn\u0161tajn"
+            ]
+          },
+          {
+            "personalName": [
+              "Ai-yin-ssu-t'an"
+            ]
+          },
+          {
+            "personalName": [
+              "\u611b\u56e0\u65af\u5766"
+            ]
+          },
+          {
+            "forename": [
+              "A."
+            ],
+            "surname": [
+              "Ajn\u0161tajn"
+            ]
+          },
+          {
+            "forename": [
+              "Albarta"
+            ],
+            "surname": [
+              "Ainstaina"
+            ]
+          },
+          {
+            "forename": [
+              "\u0410\u043b\u044c\u0431\u0435\u0440\u0442"
+            ],
+            "surname": [
+              "\u0415\u0439\u043d\u0448\u0442\u0435\u0439\u043d"
+            ]
+          },
+          {
+            "forename": [
+              "Alber\u1e6d"
+            ],
+            "surname": [
+              "Eynsh\u1e6deyn"
+            ]
+          },
+          {
+            "forename": [
+              "\u0410\u043b\u0431\u0435\u0440\u0442"
+            ],
+            "surname": [
+              "\u0410\u0458\u043d\u0448\u0442\u0430\u0458\u043d"
+            ]
+          },
+          {
+            "forename": [
+              "A."
+            ],
+            "surname": [
+              "Eyn\u0161teyn"
+            ]
+          },
+          {
+            "forename": [
+              "Alberta"
+            ],
+            "surname": [
+              "Einsteina"
+            ]
+          },
+          {
+            "forename": [
+              "Albirt"
+            ],
+            "surname": [
+              "Ayn\u0161t\u0101yn"
+            ]
+          },
+          {
+            "personalName": [
+              "Inshtin"
+            ]
+          },
+          {
+            "forename": [
+              "\u0410\u043b\u0431\u0435\u0440\u0442"
+            ],
+            "surname": [
+              "\u0410\u0439\u043d\u0449\u0430\u0439\u043d"
+            ]
+          },
+          {
+            "personalName": [
+              "Ayinsten"
+            ]
+          },
+          {
+            "forename": [
+              "Albert"
+            ],
+            "surname": [
+              "Ainshtain"
+            ]
+          },
+          {
+            "personalName": [
+              "Ai yin si tan"
+            ]
+          }
+        ],
+        "@context": "https://lobid.org/gnd/context.jsonld",
+        "professionalRelationship": [
+          {
+            "id": "https://d-nb.info/gnd/116243481",
+            "label": "Dukas, Helen"
+          }
+        ],
+        "deprecatedUri": [
+          "https://d-nb.info/gnd/185770878"
+        ],
+        "relatedSubjectHeading": [
+          {
+            "id": "https://d-nb.info/gnd/4042421-2",
+            "label": "Nobelpreistr\u00e4ger"
+          }
+        ],
+        "hasChild": [
+          {
+            "id": "https://d-nb.info/gnd/143075845",
+            "label": "Einstein, Hans Albert"
+          },
+          {
+            "id": "https://d-nb.info/gnd/118810928",
+            "label": "Einstein, Eduard"
+          }
+        ],
+        "variantName": [
+          "Einstein",
+          "Ejn\u0161tejn, Albert",
+          "Einstein, A.",
+          "\u0622\u06cc\u0646\u0634\u062a\u06cc\u0646, \u0622\u0644\u0628\u0631\u062a",
+          "Ainstaina, Albarta",
+          "Ai-yin-ssu-t'an",
+          "Ajn\u0161tajn, Albert",
+          "Eyn\u0161teyn, A.",
+          "Eynsh\u1e6deyn, Alber\u1e6d",
+          "Einsteina, Alberta",
+          "\u7231\u56e0\u65af\u5766, \u963f\u5c14\u4f2f\u7279",
+          "Ain\u0161tain",
+          "\u0116jn\u0161tejn, Al\u02b9bert",
+          "\u0410\u0439\u043d\u0449\u0430\u0439\u043d, \u0410\u043b\u0431\u0435\u0440\u0442",
+          "Ainsyut'ain, Alber\u016dt'\u016d",
+          "Ai yin si tan",
+          "Xa-yan-si-tcan",
+          "Ayn\u0161t\u0101yn, Albirt",
+          "\u611b\u56e0\u65af\u5766",
+          "Einstein, Albert",
+          "Ainshtain, Albert",
+          "Xen-si-than",
+          "Ajn\u0161tajn, A.",
+          "Aynishtayn",
+          "\u0116jn\u0161tejn, Al'bert",
+          "Ainshutain",
+          "\u0410\u0458\u043d\u0448\u0442\u0430\u0458\u043d, \u0410\u043b\u0431\u0435\u0440\u0442",
+          "\u0415\u0439\u043d\u0448\u0442\u0435\u0439\u043d, \u0410\u043b\u044c\u0431\u0435\u0440\u0442",
+          "Xal-bhar-kri-xa-yan-si-tcan",
+          "Ainshutain, A.",
+          "Einshtein, Al'bert",
+          "A\u00efnsta\u00efn, Albertos",
+          "\u0391\u03b9\u034f\u0308\u03bd\u03c3\u03c4\u03ac\u03b9\u03bd, \u0386\u03bb\u03bc\u03c0\u03b5\u03c1\u03c4",
+          "Ayn\u0161tayn, \u0100lbirt",
+          "Ein\u0161teinas, A.",
+          "Ainsten",
+          "Inshtin",
+          "A\u00efnsta\u00efn, Almpert",
+          "\u0116jn\u0161tejn, A.",
+          "Aiyinsitan",
+          "Ayinsten",
+          "Ai-yin-ssu-t'an, A-po-t'e",
+          "\u042d\u0439\u043d\u0448\u0442\u0435\u0439\u043d, \u0410\u043b\u044c\u0431\u0435\u0440\u0442"
+        ],
+        "acquaintanceshipOrFriendship": [
+          {
+            "id": "https://d-nb.info/gnd/138573131",
+            "label": "Kleiner, Alfred"
+          }
+        ],
+        "hasParent": [
+          {
+            "id": "https://d-nb.info/gnd/1376489538",
+            "label": "Einstein, Hermann"
+          }
+        ],
+        "sameAs": [
+          {
+            "collection": {
+              "name": "Biblioth\u00e8que nationale de France",
+              "icon": "https://www.bnf.fr/themes/custom/bnfsi/favicon.ico",
+              "publisher": "Biblioth\u00e8que nationale de France",
+              "id": "http://www.wikidata.org/entity/Q19938912",
+              "abbr": "BNF"
+            },
+            "id": "http://catalogue.bnf.fr/ark:/12148/cb119016075"
+          },
+          {
+            "id": "http://id.loc.gov/rwo/agents/n79022889",
+            "collection": {
+              "icon": "http://www.loc.gov/favicon.ico",
+              "name": "NACO Authority File",
+              "publisher": "Library of Congress",
+              "id": "http://www.wikidata.org/entity/Q13219454",
+              "abbr": "LC"
+            }
+          },
+          {
+            "id": "http://viaf.org/viaf/75121530",
+            "collection": {
+              "icon": "http://viaf.org/viaf/images/viaf.ico",
+              "name": "Virtual International Authority File (VIAF)",
+              "publisher": "OCLC",
+              "id": "http://www.wikidata.org/entity/Q54919",
+              "abbr": "VIAF"
+            }
+          },
+          {
+            "collection": {
+              "name": "Historisches Lexikon der Schweiz (HLS)",
+              "icon": "https://www.hls-dhs-dss.ch/favicon.ico",
+              "publisher": "Historisches Lexikon der Schweiz (HLS)",
+              "id": "http://www.wikidata.org/entity/Q642074",
+              "abbr": "CH_HLS"
+            },
+            "id": "http://www.hls-dhs-dss.ch/textes/d/D28814.php"
+          },
+          {
+            "id": "http://www.wikidata.org/entity/Q937",
+            "collection": {
+              "icon": "https://www.wikidata.org/static/favicon/wikidata.ico",
+              "name": "Wikidata",
+              "publisher": "Wikimedia Foundation Inc.",
+              "id": "http://www.wikidata.org/entity/Q2013",
+              "abbr": "WIKIDATA"
+            }
+          },
+          {
+            "collection": {
+              "name": "Bayerisches Musiker-Lexikon Online",
+              "icon": "https://bmlo.de/x/pic/favicon.gif",
+              "publisher": "Bayerisches Musiker-Lexikon Online",
+              "id": "https://bmlo.de",
+              "abbr": "DE-M512"
+            },
+            "id": "https://bmlo.de/Q/GND=118529579"
+          },
+          {
+            "collection": {
+              "name": "Gemeinsame Normdatei (GND) im Katalog der Deutschen Nationalbibliothek",
+              "icon": "https://www.dnb.de/SiteGlobals/Frontend/DNBWeb/Images/favicon.png?__blob=normal&v=4",
+              "publisher": "Deutsche Nationalbibliothek",
+              "id": "http://www.wikidata.org/entity/Q36578",
+              "abbr": "DNB"
+            },
+            "id": "https://d-nb.info/gnd/118529579/about"
+          },
+          {
+            "id": "https://d-nb.info/gnd/185770878",
+            "collection": {
+              "icon": "http://www.dnb.de/SiteGlobals/StyleBundles/Bilder/favicon.png?__blob=normal&v=1",
+              "name": "Gemeinsame Normdatei (GND) im Katalog der Deutschen Nationalbibliothek",
+              "publisher": "Deutsche Nationalbibliothek",
+              "id": "http://www.wikidata.org/entity/Q36578",
+              "abbr": "DNB"
+            }
+          },
+          {
+            "collection": {
+              "name": "JudaicaLink",
+              "icon": "https://data.judaicalink.org/static/img/favicon.ico",
+              "publisher": "Stuttgart Media University",
+              "id": "https://data.judaicalink.org",
+              "abbr": "JudaicaLink"
+            },
+            "id": "https://data.judaicalink.org/data/gnd/118529579"
+          },
+          {
+            "id": "https://dbpedia.org/resource/Albert_Einstein",
+            "collection": {
+              "id": "https://dbpedia.org"
+            }
+          },
+          {
+            "collection": {
+              "name": "Wikipedia (Deutsch)",
+              "icon": "https://de.wikipedia.org/static/favicon/wikipedia.ico",
+              "publisher": "Wikimedia Foundation Inc.",
+              "id": "http://www.wikidata.org/entity/Q48183",
+              "abbr": "dewiki"
+            },
+            "id": "https://de.wikipedia.org/wiki/Albert_Einstein"
+          },
+          {
+            "collection": {
+              "name": "Wikisource",
+              "icon": "https://wikisource.org/static/favicon/wikisource.ico",
+              "publisher": "Wikimedia Foundation Inc.",
+              "id": "http://www.wikidata.org/entity/Q263",
+              "abbr": "WIKISOURCE"
+            },
+            "id": "https://de.wikisource.org/wiki/Albert_Einstein"
+          },
+          {
+            "collection": {
+              "name": "Wikipedia (English)",
+              "icon": "https://en.wikipedia.org/static/favicon/wikipedia.ico",
+              "publisher": "Wikimedia Foundation Inc.",
+              "id": "http://www.wikidata.org/entity/Q328",
+              "abbr": "enwiki"
+            },
+            "id": "https://en.wikipedia.org/wiki/Albert_Einstein"
+          },
+          {
+            "id": "https://isni.org/isni/000000012281955X",
+            "collection": {
+              "id": "https://isni.org"
+            }
+          },
+          {
+            "collection": {
+              "name": "Kalliope Verbundkatalog",
+              "icon": "https://kalliope-verbund.info/img/favicon.ico",
+              "publisher": "Staatsbibliothek zu Berlin - Preu\u00dfischer Kulturbesitz",
+              "id": "https://kalliope-verbund.info",
+              "abbr": "DE-611"
+            },
+            "id": "https://kalliope-verbund.info/gnd/118529579"
+          },
+          {
+            "collection": {
+              "name": "Archivportal-D",
+              "icon": "https://www.archivportal-d.de/favicon.ico",
+              "publisher": "Deutsche Digitale Bibliothek",
+              "id": "https://www.archivportal-d.de",
+              "abbr": "ARCHIV-D"
+            },
+            "id": "https://www.archivportal-d.de/person/gnd/118529579"
+          },
+          {
+            "collection": {
+              "name": "Neue Deutsche Biographie (NDB)",
+              "icon": "https://www.deutsche-biographie.de/favicon.ico",
+              "publisher": "Historische Kommission bei der Bayerischen Akademie der Wissenschaften und Bayerische Staatsbibliothek",
+              "id": "https://www.deutsche-biographie.de",
+              "abbr": "NDB"
+            },
+            "id": "https://www.deutsche-biographie.de/pnd118529579.html#ndbcontent"
+          },
+          {
+            "collection": {
+              "name": "Deutsche Digitale Bibliothek",
+              "icon": "https://www.deutsche-digitale-bibliothek.de/favicon.ico",
+              "publisher": "Deutsche Digitale Bibliothek",
+              "id": "http://www.wikidata.org/entity/Q621630",
+              "abbr": "DDB"
+            },
+            "id": "https://www.deutsche-digitale-bibliothek.de/person/gnd/118529579"
+          },
+          {
+            "id": "https://www.filmportal.de/4533E35F16964C939B82033BB6259E32",
+            "collection": {
+              "id": "https://www.filmportal.de"
+            }
+          }
+        ]
+      },
+      "error": null
+    },
+    {
+      "source_name": "VIAF",
+      "source_type": "authority_file",
+      "tier": "tier_1_authority",
+      "found": false,
+      "title": null,
+      "url": null,
+      "extract": null,
+      "relevance_score": 0.0,
+      "reliability_score": 0.95,
+      "claim_review": null,
+      "rating": null,
+      "raw_data": null,
+      "error": "Redirect response '307 ' for url 'https://viaf.org/viaf/search?query=local.names+all+%22Albert+Einstein%22&httpAccept=application%2Fjson&maximumRecords=5'\nRedirect location: '/en/viaf/search?query=local.names+all+%22Albert+Einstein%22&httpAccept=application%2Fjson&maximumRecords=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/307"
+    },
+    {
+      "source_name": "Library of Congress",
+      "source_type": "authority_file",
+      "tier": "tier_1_authority",
+      "found": false,
+      "title": null,
+      "url": null,
+      "extract": null,
+      "relevance_score": 0.0,
+      "reliability_score": 0.95,
+      "claim_review": null,
+      "rating": null,
+      "raw_data": null,
+      "error": null
+    }
+  ],
+  "fact_check_rating": null,
+  "fact_check_consensus": null,
+  "summary": "Found in 1 authoritative sources. Highest tier: authority files (highest reliability).",
+  "recommendation": "Moderate support from authoritative sources. Some verification achieved.",
+  "cached": false,
+  "timestamp": "2026-01-17T11:58:03.869280"
+}

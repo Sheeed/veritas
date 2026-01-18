@@ -1,0 +1,188 @@
+{
+  "query": "marokko ist ein europaisches land\n",
+  "verified": false,
+  "confidence": 0.351,
+  "sources_checked": 7,
+  "sources_found": 1,
+  "highest_tier_found": "tier_3_academic",
+  "results": [
+    {
+      "source_name": "GND (Deutsche Nationalbibliothek)",
+      "source_type": "authority_file",
+      "tier": "tier_1_authority",
+      "found": false,
+      "title": null,
+      "url": null,
+      "extract": null,
+      "relevance_score": 0.0,
+      "reliability_score": 0.95,
+      "claim_review": null,
+      "rating": null,
+      "raw_data": null,
+      "error": null
+    },
+    {
+      "source_name": "VIAF",
+      "source_type": "authority_file",
+      "tier": "tier_1_authority",
+      "found": false,
+      "title": null,
+      "url": null,
+      "extract": null,
+      "relevance_score": 0.0,
+      "reliability_score": 0.95,
+      "claim_review": null,
+      "rating": null,
+      "raw_data": null,
+      "error": "Redirect response '307 ' for url 'https://viaf.org/viaf/search?query=local.names+all+%22marokko+ist+ein+europaisches+land%0A%22&httpAccept=application%2Fjson&maximumRecords=5'\nRedirect location: '/en/viaf/search?query=local.names+all+%22marokko+ist+ein+europaisches+land%0A%22&httpAccept=application%2Fjson&maximumRecords=5'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/307"
+    },
+    {
+      "source_name": "Library of Congress",
+      "source_type": "authority_file",
+      "tier": "tier_1_authority",
+      "found": false,
+      "title": null,
+      "url": null,
+      "extract": null,
+      "relevance_score": 0.0,
+      "reliability_score": 0.95,
+      "claim_review": null,
+      "rating": null,
+      "raw_data": null,
+      "error": null
+    },
+    {
+      "source_name": "Google Fact Check",
+      "source_type": "fact_check",
+      "tier": "tier_2_factcheck",
+      "found": false,
+      "title": null,
+      "url": null,
+      "extract": null,
+      "relevance_score": 0.0,
+      "reliability_score": 0.85,
+      "claim_review": null,
+      "rating": null,
+      "raw_data": null,
+      "error": "API key not configured"
+    },
+    {
+      "source_name": "ClaimBuster",
+      "source_type": "fact_check",
+      "tier": "tier_2_factcheck",
+      "found": false,
+      "title": null,
+      "url": null,
+      "extract": null,
+      "relevance_score": 0.0,
+      "reliability_score": 0.85,
+      "claim_review": null,
+      "rating": null,
+      "raw_data": null,
+      "error": ""
+    },
+    {
+      "source_name": "CrossRef (Academic)",
+      "source_type": "academic",
+      "tier": "tier_3_academic",
+      "found": true,
+      "title": "\u201eWales ist ein wundersch\u00f6nes Land, aber das Format ist so klein\u201c",
+      "url": "https://doi.org/10.3726/978-3-653-04001-2/16",
+      "extract": "Authors: Unknown | Published: Unknown",
+      "relevance_score": 0.3012236,
+      "reliability_score": 0.8,
+      "claim_review": null,
+      "rating": null,
+      "raw_data": {
+        "indexed": {
+          "date-parts": [
+            [
+              2022,
+              4,
+              4
+            ]
+          ],
+          "date-time": "2022-04-04T17:29:56Z",
+          "timestamp": 1649093396740
+        },
+        "reference-count": 0,
+        "publisher": "Peter Lang",
+        "content-domain": {
+          "domain": [],
+          "crossmark-restriction": false
+        },
+        "DOI": "10.3726/978-3-653-04001-2/16",
+        "type": "book-chapter",
+        "created": {
+          "date-parts": [
+            [
+              2016,
+              7,
+              11
+            ]
+          ],
+          "date-time": "2016-07-11T18:57:31Z",
+          "timestamp": 1468263451000
+        },
+        "source": "Crossref",
+        "is-referenced-by-count": 0,
+        "title": [
+          "\u201eWales ist ein wundersch\u00f6nes Land, aber das Format ist so klein\u201c"
+        ],
+        "prefix": "10.3726",
+        "member": "2030",
+        "container-title": [
+          "Wales"
+        ],
+        "deposited": {
+          "date-parts": [
+            [
+              2016,
+              8,
+              31
+            ]
+          ],
+          "date-time": "2016-08-31T07:28:54Z",
+          "timestamp": 1472628534000
+        },
+        "score": 30.12236,
+        "resource": {
+          "primary": {
+            "URL": "https://www.peterlang.com/view/9783653990003/13_CH07.html"
+          }
+        },
+        "issued": {
+          "date-parts": [
+            [
+              null
+            ]
+          ]
+        },
+        "references-count": 0,
+        "URL": "https://doi.org/10.3726/978-3-653-04001-2/16"
+      },
+      "error": null
+    },
+    {
+      "source_name": "Open Library",
+      "source_type": "academic",
+      "tier": "tier_3_academic",
+      "found": false,
+      "title": null,
+      "url": null,
+      "extract": null,
+      "relevance_score": 0.0,
+      "reliability_score": 0.8,
+      "claim_review": null,
+      "rating": null,
+      "raw_data": null,
+      "error": null
+    }
+  ],
+  "fact_check_rating": null,
+  "fact_check_consensus": null,
+  "summary": "Found in 1 authoritative sources. Highest tier: academic sources.",
+  "recommendation": "Minimal authoritative support found. Treat this claim with caution.",
+  "cached": false,
+  "timestamp": "2026-01-17T14:06:56.230832"
+}

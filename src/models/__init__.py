@@ -16,7 +16,30 @@ from .schema import (
     VerificationResult,
 )
 
+from .veritas_schema import (
+    FactStatus,
+    ContextStatus,
+    NarrativeStatus,
+    ConfidenceLevel,
+    MythCategory,
+    SourceType,
+    HistoricalEra,
+    Region,
+    Source,
+    MythOrigin,
+    HistoricalMyth,
+    NarrativePattern,
+    NarrativeMatch,
+    ClaimAnalysis,
+    ContextAnalysis,
+    FullAnalysis,
+    VerdictType,
+    VERDICT_DESCRIPTIONS,
+    MythDatabase,
+)
+
 __all__ = [
+    # Schema
     "AnyNode",
     "ChronologicalCheck",
     "DateNode",
@@ -30,4 +53,24 @@ __all__ = [
     "RelationType",
     "SourceLabel",
     "VerificationResult",
+    # Veritas
+    "FactStatus",
+    "ContextStatus",
+    "NarrativeStatus",
+    "ConfidenceLevel",
+    "MythCategory",
+    "SourceType",
+    "HistoricalEra",
+    "Region",
+    "Source",
+    "MythOrigin",
+    "HistoricalMyth",
+    "NarrativePattern",
+    "NarrativeMatch",
+    "ClaimAnalysis",
+    "ContextAnalysis",
+    "FullAnalysis",
+    "VerdictType",
+    "VERDICT_DESCRIPTIONS",
+    "MythDatabase",
 ]
