@@ -216,7 +216,6 @@ FEW_SHOT_EXAMPLES_V2 = [
         "input": """Die Französische Revolution begann am 14. Juli 1789 mit dem Sturm 
 auf die Bastille in Paris. König Ludwig XVI. wurde am 21. Januar 1793 auf der 
 Place de la Révolution hingerichtet.""",
-        
         "reasoning": """ANALYSE:
 1. Entitäten identifiziert: Französische Revolution (Event), Sturm auf die Bastille (Event), 
    Paris (Location), Ludwig XVI. (Person), Place de la Révolution (Location)
@@ -232,7 +231,6 @@ EVIDENZ-CHECK:
 KONFIDENZ:
 - Alle Daten explizit → 1.0
 - Alle Namen vollständig → 1.0""",
-        
         "output": {
             "nodes": [
                 {
@@ -240,14 +238,14 @@ KONFIDENZ:
                     "name": "Französische Revolution",
                     "start_date": "1789-07-14",
                     "confidence": 1.0,
-                    "text_evidence": "Die Französische Revolution begann am 14. Juli 1789"
+                    "text_evidence": "Die Französische Revolution begann am 14. Juli 1789",
                 },
                 {
                     "node_type": "Event",
                     "name": "Sturm auf die Bastille",
                     "start_date": "1789-07-14",
                     "confidence": 1.0,
-                    "text_evidence": "Sturm auf die Bastille in Paris"
+                    "text_evidence": "Sturm auf die Bastille in Paris",
                 },
                 {
                     "node_type": "Person",
@@ -255,14 +253,14 @@ KONFIDENZ:
                     "aliases": ["König Ludwig XVI."],
                     "death_date": "1793-01-21",
                     "confidence": 1.0,
-                    "text_evidence": "König Ludwig XVI. wurde am 21. Januar 1793...hingerichtet"
+                    "text_evidence": "König Ludwig XVI. wurde am 21. Januar 1793...hingerichtet",
                 },
                 {
                     "node_type": "Location",
                     "name": "Paris",
                     "location_type": "city",
                     "confidence": 1.0,
-                    "text_evidence": "Bastille in Paris"
+                    "text_evidence": "Bastille in Paris",
                 },
                 {
                     "node_type": "Location",
@@ -270,57 +268,56 @@ KONFIDENZ:
                     "parent_location": "Paris",
                     "location_type": "square",
                     "confidence": 1.0,
-                    "text_evidence": "auf der Place de la Révolution hingerichtet"
+                    "text_evidence": "auf der Place de la Révolution hingerichtet",
                 },
                 {
                     "node_type": "Date",
                     "name": "14. Juli 1789",
                     "date_value": "1789-07-14",
                     "precision": "day",
-                    "confidence": 1.0
+                    "confidence": 1.0,
                 },
                 {
                     "node_type": "Date",
                     "name": "21. Januar 1793",
                     "date_value": "1793-01-21",
                     "precision": "day",
-                    "confidence": 1.0
-                }
+                    "confidence": 1.0,
+                },
             ],
             "relationships": [
                 {
                     "source_name": "Sturm auf die Bastille",
                     "target_name": "Französische Revolution",
                     "relation_type": "PART_OF",
-                    "confidence": 1.0
+                    "confidence": 1.0,
                 },
                 {
                     "source_name": "Sturm auf die Bastille",
                     "target_name": "Paris",
                     "relation_type": "LOCATED_AT",
-                    "confidence": 1.0
+                    "confidence": 1.0,
                 },
                 {
                     "source_name": "Sturm auf die Bastille",
                     "target_name": "14. Juli 1789",
                     "relation_type": "HAPPENED_ON",
-                    "confidence": 1.0
+                    "confidence": 1.0,
                 },
                 {
                     "source_name": "Ludwig XVI.",
                     "target_name": "Place de la Révolution",
                     "relation_type": "DIED_IN",
-                    "confidence": 1.0
-                }
-            ]
-        }
+                    "confidence": 1.0,
+                },
+            ],
+        },
     },
     {
         "input": """Der Wissenschaftler Albert Einstein entwickelte 1905 seine 
 spezielle Relativitätstheorie. Er wurde 1921 mit dem Nobelpreis für Physik 
 ausgezeichnet, allerdings nicht für die Relativitätstheorie, sondern für 
 seine Erklärung des photoelektrischen Effekts.""",
-        
         "reasoning": """ANALYSE:
 1. Entitäten: Albert Einstein (Person), spezielle Relativitätstheorie (Konzept), 
    Nobelpreis für Physik (Event/Award), photoelektrischer Effekt (Konzept)
@@ -337,7 +334,6 @@ ANTI-HALLUZINATION:
 - Geburtsdatum NICHT im Text → NICHT extrahieren
 - Todesdatum NICHT im Text → NICHT extrahieren
 - Arbeitsort NICHT im Text → NICHT extrahieren""",
-        
         "output": {
             "nodes": [
                 {
@@ -345,7 +341,7 @@ ANTI-HALLUZINATION:
                     "name": "Albert Einstein",
                     "occupation": "Wissenschaftler",
                     "confidence": 1.0,
-                    "text_evidence": "Der Wissenschaftler Albert Einstein"
+                    "text_evidence": "Der Wissenschaftler Albert Einstein",
                 },
                 {
                     "node_type": "Event",
@@ -353,7 +349,7 @@ ANTI-HALLUZINATION:
                     "start_date": "1905-01-01",
                     "event_type": "scientific_discovery",
                     "confidence": 0.9,
-                    "text_evidence": "entwickelte 1905 seine spezielle Relativitätstheorie"
+                    "text_evidence": "entwickelte 1905 seine spezielle Relativitätstheorie",
                 },
                 {
                     "node_type": "Event",
@@ -362,51 +358,51 @@ ANTI-HALLUZINATION:
                     "event_type": "award",
                     "description": "Für die Erklärung des photoelektrischen Effekts",
                     "confidence": 1.0,
-                    "text_evidence": "1921 mit dem Nobelpreis für Physik ausgezeichnet"
+                    "text_evidence": "1921 mit dem Nobelpreis für Physik ausgezeichnet",
                 },
                 {
                     "node_type": "Date",
                     "name": "1905",
                     "date_value": "1905-01-01",
                     "precision": "year",
-                    "confidence": 1.0
+                    "confidence": 1.0,
                 },
                 {
                     "node_type": "Date",
                     "name": "1921",
                     "date_value": "1921-01-01",
                     "precision": "year",
-                    "confidence": 1.0
-                }
+                    "confidence": 1.0,
+                },
             ],
             "relationships": [
                 {
                     "source_name": "Albert Einstein",
                     "target_name": "Entwicklung der speziellen Relativitätstheorie",
                     "relation_type": "PARTICIPATED_IN",
-                    "confidence": 1.0
+                    "confidence": 1.0,
                 },
                 {
                     "source_name": "Albert Einstein",
                     "target_name": "Nobelpreis für Physik 1921",
                     "relation_type": "PARTICIPATED_IN",
-                    "confidence": 1.0
+                    "confidence": 1.0,
                 },
                 {
                     "source_name": "Entwicklung der speziellen Relativitätstheorie",
                     "target_name": "1905",
                     "relation_type": "HAPPENED_ON",
-                    "confidence": 0.9
+                    "confidence": 0.9,
                 },
                 {
                     "source_name": "Nobelpreis für Physik 1921",
                     "target_name": "1921",
                     "relation_type": "HAPPENED_ON",
-                    "confidence": 1.0
-                }
-            ]
-        }
-    }
+                    "confidence": 1.0,
+                },
+            ],
+        },
+    },
 ]
 
 
@@ -417,7 +413,7 @@ ANTI-HALLUZINATION:
 
 class PromptBuilder:
     """Baut Prompts mit verschiedenen Techniken."""
-    
+
     @staticmethod
     def build_extraction_prompt(
         text: str,
@@ -427,35 +423,32 @@ class PromptBuilder:
     ) -> list[dict[str, str]]:
         """
         Baut einen vollständigen Extraction Prompt.
-        
+
         Args:
             text: Zu analysierender Text
             use_cot: Chain-of-Thought aktivieren
             use_few_shot: Few-Shot Beispiele einschließen
             language: Ausgabesprache
         """
-        messages = [
-            {"role": "system", "content": EXTRACTION_SYSTEM_PROMPT_V2}
-        ]
-        
+        messages = [{"role": "system", "content": EXTRACTION_SYSTEM_PROMPT_V2}]
+
         # Few-Shot Beispiele
         if use_few_shot:
             for example in FEW_SHOT_EXAMPLES_V2[:2]:
-                messages.append({
-                    "role": "user",
-                    "content": f"Extrahiere den Knowledge Graph aus folgendem Text:\n\n{example['input']}"
-                })
-                
+                messages.append(
+                    {
+                        "role": "user",
+                        "content": f"Extrahiere den Knowledge Graph aus folgendem Text:\n\n{example['input']}",
+                    }
+                )
+
                 if use_cot:
                     response = f"REASONING:\n{example['reasoning']}\n\nOUTPUT:\n{example['output']}"
                 else:
-                    response = str(example['output'])
-                
-                messages.append({
-                    "role": "assistant",
-                    "content": response
-                })
-        
+                    response = str(example["output"])
+
+                messages.append({"role": "assistant", "content": response})
+
         # Actual request
         user_prompt = f"""Extrahiere den Knowledge Graph aus folgendem Text.
 
@@ -469,11 +462,11 @@ ANWEISUNGEN:
 4. Gib das Ergebnis als valides JSON zurück
 
 {"Zeige deinen Reasoning-Prozess vor dem OUTPUT." if use_cot else "Gib NUR das JSON zurück."}"""
-        
+
         messages.append({"role": "user", "content": user_prompt})
-        
+
         return messages
-    
+
     @staticmethod
     def build_verification_prompt(
         claim_extraction: dict[str, Any],
@@ -481,11 +474,9 @@ ANWEISUNGEN:
     ) -> list[dict[str, str]]:
         """Baut einen Verification Prompt."""
         import json
-        
-        messages = [
-            {"role": "system", "content": VERIFICATION_SYSTEM_PROMPT_V2}
-        ]
-        
+
+        messages = [{"role": "system", "content": VERIFICATION_SYSTEM_PROMPT_V2}]
+
         user_prompt = f"""Verifiziere die folgende Extraktion gegen die Autoritätsdaten.
 
 CLAIM EXTRACTION:
@@ -495,19 +486,19 @@ AUTHORITY DATA (aus GND, VIAF, LOC):
 {json.dumps(fact_data, indent=2, ensure_ascii=False)}
 
 Führe das vollständige Verifikations-Protokoll durch und gib das Ergebnis als JSON zurück."""
-        
+
         messages.append({"role": "user", "content": user_prompt})
-        
+
         return messages
-    
+
     @staticmethod
     def build_decomposition_prompt(text: str) -> list[dict[str, str]]:
         """Baut einen Fact Decomposition Prompt."""
         return [
             {"role": "system", "content": FACT_DECOMPOSITION_PROMPT},
-            {"role": "user", "content": text}
+            {"role": "user", "content": text},
         ]
-    
+
     @staticmethod
     def build_consistency_prompt(
         extraction1: dict[str, Any],
@@ -515,7 +506,7 @@ Führe das vollständige Verifikations-Protokoll durch und gib das Ergebnis als 
     ) -> list[dict[str, str]]:
         """Baut einen Self-Consistency Check Prompt."""
         import json
-        
+
         return [
             {"role": "system", "content": SELF_CONSISTENCY_PROMPT},
             {
@@ -526,6 +517,6 @@ Führe das vollständige Verifikations-Protokoll durch und gib das Ergebnis als 
 EXTRAKTION 2:
 {json.dumps(extraction2, indent=2, ensure_ascii=False)}
 
-Analysiere die Konsistenz dieser beiden Extraktionen."""
-            }
+Analysiere die Konsistenz dieser beiden Extraktionen.""",
+            },
         ]

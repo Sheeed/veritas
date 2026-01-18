@@ -24,14 +24,17 @@ router = APIRouter(prefix="/factcheck", tags=["Fact Check"])
 # Models
 # =============================================================================
 
+
 class FactCheckRequest(BaseModel):
     """Anfrage fuer Faktencheck."""
+
     claim: str = Field(..., min_length=3, description="Die zu pruefende Behauptung")
     skip_cache: bool = Field(default=False, description="Cache umgehen")
 
 
 class EvidenceResponse(BaseModel):
     """Evidenz aus einer Quelle."""
+
     source: str
     content: str
     supports_claim: bool
@@ -41,6 +44,7 @@ class EvidenceResponse(BaseModel):
 
 class FactCheckResponse(BaseModel):
     """Vollstaendige Faktencheck-Antwort."""
+
     claim: str
     verdict: str
     verdict_label: str
@@ -60,6 +64,7 @@ class FactCheckResponse(BaseModel):
 
 class QuickCheckResponse(BaseModel):
     """Schnelle Faktencheck-Antwort (nur Verdict)."""
+
     claim: str
     verdict: str
     verdict_label: str
@@ -71,26 +76,27 @@ class QuickCheckResponse(BaseModel):
 # Endpoints
 # =============================================================================
 
+
 @router.post("/check", response_model=FactCheckResponse)
 async def check_claim(request: FactCheckRequest):
     """
     Vollstaendiger Faktencheck.
-    
+
     Ablauf:
     1. Cache pruefen
     2. Lokale Knowledge Base durchsuchen
     3. Parallel: LLM + Wikidata + Wikipedia
     4. Weighted Voting
-    
+
     Returns:
         Verdict, Confidence, Erklaerung, Evidenz
     """
     try:
         from src.ml.fact_checker import get_fact_checker
-        
+
         checker = get_fact_checker()
         result = await checker.check(request.claim, skip_cache=request.skip_cache)
-        
+
         return FactCheckResponse(
             claim=result.claim,
             verdict=result.verdict.value,
@@ -106,7 +112,8 @@ async def check_claim(request: FactCheckRequest):
                     supports_claim=e.supports_claim,
                     confidence=e.confidence,
                     url=e.url,
-                ) for e in result.evidence
+                )
+                for e in result.evidence
             ],
             sources_checked=result.sources_checked,
             llm_used=result.llm_used,
@@ -116,7 +123,7 @@ async def check_claim(request: FactCheckRequest):
             cached=result.cached,
             processing_time_ms=result.processing_time_ms,
         )
-        
+
     except Exception as e:
         logger.error(f"Fact check failed: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
@@ -126,15 +133,15 @@ async def check_claim(request: FactCheckRequest):
 async def quick_check(request: FactCheckRequest):
     """
     Schneller Faktencheck - nur Verdict.
-    
+
     Gleicher Ablauf wie /check, aber kompakte Antwort.
     """
     try:
         from src.ml.fact_checker import get_fact_checker
-        
+
         checker = get_fact_checker()
         result = await checker.check(request.claim, skip_cache=request.skip_cache)
-        
+
         return QuickCheckResponse(
             claim=result.claim,
             verdict=result.verdict.value,
@@ -142,7 +149,7 @@ async def quick_check(request: FactCheckRequest):
             confidence=result.confidence,
             processing_time_ms=result.processing_time_ms,
         )
-        
+
     except Exception as e:
         logger.error(f"Quick check failed: {e}")
         raise HTTPException(status_code=500, detail=str(e))
@@ -152,13 +159,13 @@ async def quick_check(request: FactCheckRequest):
 async def health():
     """Fact Checker Status."""
     import os
-    
+
     try:
         from src.ml.fact_checker import get_fact_checker
-        
+
         checker = get_fact_checker()
         stats = checker.get_cache_stats()
-        
+
         return {
             "status": "ok",
             "llm_available": bool(os.getenv("GROQ_API_KEY")),
@@ -175,7 +182,7 @@ async def cache_stats():
     """Cache Statistiken."""
     try:
         from src.ml.fact_checker import get_fact_checker
-        
+
         checker = get_fact_checker()
         return checker.get_cache_stats()
     except Exception as e:
@@ -187,10 +194,10 @@ async def clear_cache():
     """Cache leeren."""
     try:
         from src.ml.fact_checker import get_fact_checker
-        
+
         checker = get_fact_checker()
         checker.cache.clear()
-        
+
         return {"success": True, "message": "Cache cleared"}
     except Exception as e:
         return {"success": False, "error": str(e)}

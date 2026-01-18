@@ -29,6 +29,7 @@ logger = logging.getLogger(__name__)
 # Lifespan
 # =============================================================================
 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Application startup/shutdown."""
@@ -36,7 +37,7 @@ async def lifespan(app: FastAPI):
     logger.info("VERITAS API v0.7.1")
     logger.info("Self-Improving Fact Checker")
     logger.info("=" * 50)
-    
+
     # Groq API Key
     if os.getenv("GROQ_API_KEY"):
         logger.info("[OK] Groq API key set")
@@ -44,24 +45,26 @@ async def lifespan(app: FastAPI):
     else:
         logger.warning("[!!] GROQ_API_KEY not set")
         app.state.groq_available = False
-    
+
     logger.info("[OK] Wikidata SPARQL available")
     logger.info("[OK] Wikipedia API available")
-    
+
     yield
-    
+
     # Shutdown
     logger.info("Shutting down...")
-    
+
     try:
         from src.ml.fact_checker import _fact_checker_instance
+
         if _fact_checker_instance:
             await _fact_checker_instance.close()
     except:
         pass
-    
+
     try:
         from src.ml.self_improver import _instance
+
         if _instance:
             await _instance.close()
     except:
@@ -116,6 +119,7 @@ app.add_middleware(
 # Fact Check Router
 try:
     from src.api.factcheck_router import router as factcheck_router
+
     app.include_router(factcheck_router)
     logger.info("[OK] /factcheck/* loaded")
 except ImportError as e:
@@ -124,6 +128,7 @@ except ImportError as e:
 # Learning Router
 try:
     from src.api.learning_router import router as learning_router
+
     app.include_router(learning_router)
     logger.info("[OK] /learning/* loaded")
 except ImportError as e:
@@ -132,6 +137,7 @@ except ImportError as e:
 # Optional: Veritas Router (Mythen-DB)
 try:
     from src.api.veritas_router import router as veritas_router
+
     app.include_router(veritas_router)
     logger.info("[OK] /veritas/* loaded")
 except ImportError:
@@ -140,6 +146,7 @@ except ImportError:
 # Optional: Graph Router (Neo4j)
 try:
     from src.api.graph_router import router as graph_router
+
     app.include_router(graph_router)
     logger.info("[OK] /graph/* loaded")
 except ImportError:
@@ -149,6 +156,7 @@ except ImportError:
 # =============================================================================
 # Core Endpoints
 # =============================================================================
+
 
 @app.get("/", tags=["Root"])
 async def root():
@@ -173,7 +181,7 @@ async def health():
     return {
         "status": "healthy",
         "version": "0.7.1",
-        "groq_available": getattr(app.state, 'groq_available', False),
+        "groq_available": getattr(app.state, "groq_available", False),
         "wikidata_available": True,
     }
 
@@ -183,19 +191,21 @@ async def detailed_status():
     """Detaillierter Status."""
     kb_stats = {}
     fc_stats = {}
-    
+
     try:
         from src.ml.self_improver import get_self_improver
+
         kb_stats = get_self_improver().get_stats()
     except:
         pass
-    
+
     try:
         from src.ml.fact_checker import get_fact_checker
+
         fc_stats = get_fact_checker().get_cache_stats()
     except:
         pass
-    
+
     return {
         "version": "0.7.1",
         "knowledge_base": kb_stats,
@@ -206,6 +216,7 @@ async def detailed_status():
 # =============================================================================
 # Error Handler
 # =============================================================================
+
 
 @app.exception_handler(Exception)
 async def error_handler(request, exc):
@@ -222,15 +233,17 @@ async def error_handler(request, exc):
 
 if __name__ == "__main__":
     import uvicorn
-    
+
     port = int(os.getenv("PORT", "8000"))
-    
-    print(f"""
+
+    print(
+        f"""
     ========================================
       VERITAS API v0.7.1
       http://localhost:{port}
       http://localhost:{port}/docs
     ========================================
-    """)
-    
+    """
+    )
+
     uvicorn.run("src.api.main:app", host="0.0.0.0", port=port, reload=True)

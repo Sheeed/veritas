@@ -28,7 +28,8 @@ API_BASE = "http://localhost:8000"
 # Claude-inspiriertes CSS Design
 # =============================================================================
 
-st.markdown("""
+st.markdown(
+    """
 <style>
     /* Import Google Font */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -456,7 +457,9 @@ st.markdown("""
         animation: pulse 2s infinite;
     }
 </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
 
 # =============================================================================
@@ -466,20 +469,20 @@ st.markdown("""
 
 class HistoryGuardianClient:
     """Async Client fuer die History Guardian API."""
-    
+
     def __init__(self, base_url: str = API_BASE):
         self.base_url = base_url
-    
+
     async def health_check(self) -> dict:
         async with httpx.AsyncClient() as client:
             response = await client.get(f"{self.base_url}/health")
             return response.json()
-    
+
     async def get_stats(self) -> dict:
         async with httpx.AsyncClient() as client:
             response = await client.get(f"{self.base_url}/stats")
             return response.json()
-    
+
     async def extract(self, text: str) -> dict:
         async with httpx.AsyncClient(timeout=120.0) as client:
             response = await client.post(
@@ -487,7 +490,7 @@ class HistoryGuardianClient:
                 json={"text": text},
             )
             return response.json()
-    
+
     async def validate(self, extraction: dict) -> dict:
         async with httpx.AsyncClient(timeout=60.0) as client:
             response = await client.post(
@@ -495,7 +498,7 @@ class HistoryGuardianClient:
                 json={"extraction": extraction},
             )
             return response.json()
-    
+
     async def ingest(self, text: str, as_fact: bool = False) -> dict:
         async with httpx.AsyncClient(timeout=60.0) as client:
             response = await client.post(
@@ -503,7 +506,7 @@ class HistoryGuardianClient:
                 json={"text": text, "as_fact": as_fact},
             )
             return response.json()
-    
+
     async def score_confidence(self, extraction: dict, source_text: str = None) -> dict:
         async with httpx.AsyncClient(timeout=60.0) as client:
             response = await client.post(
@@ -532,43 +535,58 @@ client = HistoryGuardianClient()
 
 def render_header():
     """Rendert den Header."""
-    st.markdown("""
+    st.markdown(
+        """
     <div class="hg-header">
         <div class="hg-logo">History Guardian</div>
         <h1 class="hg-title">Historische Fakten verifizieren</h1>
         <p class="hg-subtitle">GraphRAG-basierte Analyse mit autoritativen Quellen</p>
     </div>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
 
 
 def render_navigation(current_page: str) -> str:
     """Rendert die Navigation."""
     col1, col2, col3, col4 = st.columns(4)
-    
+
     with col1:
-        if st.button("Analyse", use_container_width=True, 
-                     type="primary" if current_page == "analysis" else "secondary"):
+        if st.button(
+            "Analyse",
+            use_container_width=True,
+            type="primary" if current_page == "analysis" else "secondary",
+        ):
             return "analysis"
     with col2:
-        if st.button("Datenbank", use_container_width=True,
-                     type="primary" if current_page == "database" else "secondary"):
+        if st.button(
+            "Datenbank",
+            use_container_width=True,
+            type="primary" if current_page == "database" else "secondary",
+        ):
             return "database"
     with col3:
-        if st.button("Quellen", use_container_width=True,
-                     type="primary" if current_page == "sources" else "secondary"):
+        if st.button(
+            "Quellen",
+            use_container_width=True,
+            type="primary" if current_page == "sources" else "secondary",
+        ):
             return "sources"
     with col4:
-        if st.button("Status", use_container_width=True,
-                     type="primary" if current_page == "status" else "secondary"):
+        if st.button(
+            "Status",
+            use_container_width=True,
+            type="primary" if current_page == "status" else "secondary",
+        ):
             return "status"
-    
+
     return current_page
 
 
 def render_confidence(confidence: float):
     """Rendert die Konfidenz-Anzeige."""
     percentage = int(confidence * 100)
-    
+
     if confidence >= 0.8:
         level = "high"
         label = "Hohe Konfidenz"
@@ -578,14 +596,17 @@ def render_confidence(confidence: float):
     else:
         level = "low"
         label = "Niedrige Konfidenz"
-    
-    st.markdown(f"""
+
+    st.markdown(
+        f"""
     <div class="confidence-display">
         <div class="confidence-value {level}">{percentage}%</div>
         <div class="confidence-label">{label}</div>
     </div>
-    """, unsafe_allow_html=True)
-    
+    """,
+        unsafe_allow_html=True,
+    )
+
     st.progress(confidence)
 
 
@@ -598,9 +619,11 @@ def render_status_badge(status: str):
         "partially_verified": ("Teilweise verifiziert", "status-suspicious"),
         "unverifiable": ("Nicht pruefbar", "status-suspicious"),
     }
-    
+
     label, css_class = status_map.get(status, ("Unbekannt", "status-suspicious"))
-    st.markdown(f'<span class="status-badge {css_class}">{label}</span>', unsafe_allow_html=True)
+    st.markdown(
+        f'<span class="status-badge {css_class}">{label}</span>', unsafe_allow_html=True
+    )
 
 
 def render_entity(node: dict):
@@ -608,7 +631,7 @@ def render_entity(node: dict):
     node_type = node.get("node_type", "Unknown")
     name = node.get("name", "Unbekannt")
     confidence = node.get("confidence", 0)
-    
+
     extra_info = []
     if node.get("birth_date"):
         extra_info.append(f"geb. {node['birth_date']}")
@@ -616,10 +639,11 @@ def render_entity(node: dict):
         extra_info.append(f"gest. {node['death_date']}")
     if node.get("start_date"):
         extra_info.append(f"{node['start_date']}")
-    
+
     meta = " | ".join(extra_info) if extra_info else f"Konfidenz: {confidence:.0%}"
-    
-    st.markdown(f"""
+
+    st.markdown(
+        f"""
     <div class="entity-item">
         <div>
             <div class="entity-type">{node_type}</div>
@@ -627,7 +651,9 @@ def render_entity(node: dict):
             <div class="entity-meta">{meta}</div>
         </div>
     </div>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
 
 
 def render_issue(issue: dict):
@@ -635,7 +661,7 @@ def render_issue(issue: dict):
     severity = issue.get("severity", "info")
     issue_type = issue.get("issue_type", "")
     message = issue.get("message", "")
-    
+
     severity_class = {
         "critical": "issue-critical",
         "high": "issue-critical",
@@ -643,13 +669,16 @@ def render_issue(issue: dict):
         "low": "issue-info",
         "info": "issue-info",
     }.get(severity, "issue-info")
-    
-    st.markdown(f"""
+
+    st.markdown(
+        f"""
     <div class="issue-card {severity_class}">
         <div class="issue-title">{severity.upper()}: {issue_type}</div>
         <div class="issue-message">{message}</div>
     </div>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
 
 
 def render_divider():
@@ -659,11 +688,14 @@ def render_divider():
 
 def render_footer():
     """Rendert den Footer."""
-    st.markdown("""
+    st.markdown(
+        """
     <div class="hg-footer">
         History Guardian v0.3.0 | Powered by Groq LLM | Autoritative Quellen: GND, VIAF, LOC, Getty
     </div>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
 
 
 # =============================================================================
@@ -673,17 +705,17 @@ def render_footer():
 
 def page_analysis():
     """Haupt-Analyse-Seite."""
-    
+
     # Input Section
     st.markdown("### Behauptung eingeben")
-    
+
     claim_text = st.text_area(
         "claim_input",
         height=150,
         placeholder="Geben Sie eine historische Behauptung ein, z.B.:\n\nNapoleon Bonaparte wurde am 15. August 1769 auf Korsika geboren und starb am 5. Mai 1821 auf St. Helena.",
         label_visibility="collapsed",
     )
-    
+
     col1, col2 = st.columns([3, 1])
     with col1:
         analyze_btn = st.button("Analysieren", type="primary", use_container_width=True)
@@ -691,50 +723,53 @@ def page_analysis():
         with st.popover("Optionen"):
             save_to_db = st.checkbox("In Datenbank speichern", value=False)
             show_details = st.checkbox("Details anzeigen", value=True)
-    
+
     # Analysis
     if analyze_btn and claim_text:
         render_divider()
-        
+
         # Progress indicators
         progress_placeholder = st.empty()
         result_placeholder = st.container()
-        
+
         with progress_placeholder.container():
             st.markdown("**Analyse laeuft...**")
             progress_bar = st.progress(0)
-        
+
         try:
             # Step 1: Extract
             progress_bar.progress(20)
             extract_result = run_async(client.extract(claim_text))
-            
+
             if not extract_result.get("success"):
                 st.error("Extraktion fehlgeschlagen. Bitte versuchen Sie es erneut.")
                 return
-            
+
             extraction = extract_result.get("extraction", {})
             nodes = extraction.get("nodes", [])
             relationships = extraction.get("relationships", [])
-            
+
             # Step 2: Validate
             progress_bar.progress(50)
             validation_result = run_async(client.validate(extraction))
-            
+
             # Step 3: ML Confidence
             progress_bar.progress(80)
-            confidence_result = run_async(client.score_confidence(extraction, claim_text))
-            
+            confidence_result = run_async(
+                client.score_confidence(extraction, claim_text)
+            )
+
             progress_bar.progress(100)
             progress_placeholder.empty()
-            
+
             # Results
             with result_placeholder:
                 # Summary Card
                 status = validation_result.get("overall_status", "unverifiable")
                 confidence = confidence_result.get("confidence", 0.5)
-                
-                st.markdown(f"""
+
+                st.markdown(
+                    f"""
                 <div class="result-card">
                     <div class="result-header">
                         <div class="result-icon {'success' if status == 'verified' else 'warning' if status == 'suspicious' else 'error' if status == 'contradicted' else 'info'}">
@@ -746,46 +781,54 @@ def page_analysis():
                         </div>
                     </div>
                 </div>
-                """, unsafe_allow_html=True)
-                
+                """,
+                    unsafe_allow_html=True,
+                )
+
                 # Main Results
                 col1, col2 = st.columns(2)
-                
+
                 with col1:
                     st.markdown("#### Bewertung")
                     render_status_badge(status)
-                    st.markdown(f"**{validation_result.get('summary', 'Keine Zusammenfassung verfuegbar')}**")
-                    
+                    st.markdown(
+                        f"**{validation_result.get('summary', 'Keine Zusammenfassung verfuegbar')}**"
+                    )
+
                     if validation_result.get("recommendation"):
                         st.info(validation_result["recommendation"])
-                
+
                 with col2:
                     st.markdown("#### Konfidenz")
                     render_confidence(confidence)
-                
+
                 # Detailed Results
                 if show_details:
                     render_divider()
-                    
-                    tab1, tab2, tab3 = st.tabs(["Entitaeten", "Beziehungen", "Probleme"])
-                    
+
+                    tab1, tab2, tab3 = st.tabs(
+                        ["Entitaeten", "Beziehungen", "Probleme"]
+                    )
+
                     with tab1:
                         if nodes:
                             for node in nodes:
                                 render_entity(node)
                         else:
                             st.markdown("*Keine Entitaeten extrahiert*")
-                    
+
                     with tab2:
                         if relationships:
                             for rel in relationships:
                                 source = rel.get("source_name", "?")
                                 target = rel.get("target_name", "?")
                                 rel_type = rel.get("relation_type", "?")
-                                st.markdown(f"**{source}** → *{rel_type}* → **{target}**")
+                                st.markdown(
+                                    f"**{source}** → *{rel_type}* → **{target}**"
+                                )
                         else:
                             st.markdown("*Keine Beziehungen extrahiert*")
-                    
+
                     with tab3:
                         issues = validation_result.get("all_issues", [])
                         if issues:
@@ -793,13 +836,13 @@ def page_analysis():
                                 render_issue(issue)
                         else:
                             st.success("Keine Probleme gefunden")
-                
+
                 # Save to DB
                 if save_to_db:
                     ingest_result = run_async(client.ingest(claim_text, as_fact=False))
                     if ingest_result.get("success"):
                         st.success("Als Claim in Datenbank gespeichert")
-        
+
         except httpx.ConnectError:
             progress_placeholder.empty()
             st.error("Verbindung zur API fehlgeschlagen. Ist der Server gestartet?")
@@ -811,37 +854,39 @@ def page_analysis():
 def page_database():
     """Datenbank-Verwaltungs-Seite."""
     st.markdown("### Datenbank")
-    
+
     col1, col2 = st.columns(2)
-    
+
     with col1:
         st.markdown("#### Fakt hinzufuegen")
         st.markdown("*Verifizierte historische Fakten als Ground Truth speichern*")
-        
+
         fact_text = st.text_area(
             "fact_input",
             height=120,
             placeholder="Geben Sie einen verifizierten historischen Fakt ein...",
             label_visibility="collapsed",
         )
-        
+
         if st.button("Als Fakt speichern", use_container_width=True):
             if fact_text:
                 with st.spinner("Speichere..."):
                     result = run_async(client.ingest(fact_text, as_fact=True))
                     if result.get("success"):
-                        st.success(f"Gespeichert: {result.get('nodes_added', 0)} Knoten")
+                        st.success(
+                            f"Gespeichert: {result.get('nodes_added', 0)} Knoten"
+                        )
                     else:
                         st.error("Speichern fehlgeschlagen")
-    
+
     with col2:
         st.markdown("#### Statistiken")
-        
+
         try:
             stats = run_async(client.get_stats())
             if stats.get("success"):
                 statistics = stats.get("statistics", {})
-                
+
                 st.metric("Fakten", statistics.get("Fact", 0))
                 st.metric("Claims", statistics.get("Claim", 0))
                 st.metric("Personen", statistics.get("Person", 0))
@@ -854,9 +899,9 @@ def page_sources():
     """Quellen-Uebersichts-Seite."""
     st.markdown("### Autoritative Quellen")
     st.markdown("*Alle Verifikationen basieren auf bibliothekarischen Normdateien*")
-    
+
     render_divider()
-    
+
     sources = [
         {
             "name": "GND",
@@ -891,9 +936,10 @@ def page_sources():
             "url": "https://www.getty.edu/research/tools/vocabularies/tgn/",
         },
     ]
-    
+
     for source in sources:
-        st.markdown(f"""
+        st.markdown(
+            f"""
         <div class="result-card">
             <div class="result-header">
                 <div class="result-icon info">{source['name'][:2]}</div>
@@ -908,12 +954,15 @@ def page_sources():
                 <strong>Abdeckung:</strong> {source['coverage']}
             </p>
         </div>
-        """, unsafe_allow_html=True)
-    
+        """,
+            unsafe_allow_html=True,
+        )
+
     render_divider()
-    
+
     st.markdown("#### Warum keine Wikipedia?")
-    st.markdown("""
+    st.markdown(
+        """
     Wikipedia ist eine wertvolle Ressource, aber fuer Faktenverifikation ungeeignet:
     
     - **Crowdsourced**: Jeder kann Inhalte aendern
@@ -922,20 +971,21 @@ def page_sources():
     
     Stattdessen verwenden wir ausschliesslich **kuratierte Normdateien**, 
     die von professionellen Bibliothekaren gepflegt werden.
-    """)
+    """
+    )
 
 
 def page_status():
     """System-Status-Seite."""
     st.markdown("### Systemstatus")
-    
+
     render_divider()
-    
+
     # API Health
     st.markdown("#### API")
     try:
         health = run_async(client.health_check())
-        
+
         col1, col2 = st.columns(2)
         with col1:
             if health.get("neo4j_connected"):
@@ -944,7 +994,7 @@ def page_status():
                 st.error("Neo4j nicht erreichbar")
         with col2:
             st.info(f"Version: {health.get('version', 'Unbekannt')}")
-    
+
     except httpx.ConnectError:
         st.error("API Server nicht erreichbar")
         st.markdown("Starte den Server mit:")
@@ -953,16 +1003,16 @@ def page_status():
     except Exception as e:
         st.error(f"Fehler: {e}")
         return
-    
+
     render_divider()
-    
+
     # Stats
     st.markdown("#### Datenbank-Statistiken")
     try:
         stats = run_async(client.get_stats())
         if stats.get("success"):
             statistics = stats.get("statistics", {})
-            
+
             col1, col2, col3, col4 = st.columns(4)
             with col1:
                 st.metric("Fakten", statistics.get("Fact", 0))
@@ -974,12 +1024,13 @@ def page_status():
                 st.metric("Ereignisse", statistics.get("Event", 0))
     except Exception:
         st.warning("Statistiken nicht verfuegbar")
-    
+
     render_divider()
-    
+
     # Configuration
     st.markdown("#### Konfiguration")
-    st.markdown("""
+    st.markdown(
+        """
     | Einstellung | Wert |
     |-------------|------|
     | LLM Provider | Groq |
@@ -987,7 +1038,8 @@ def page_status():
     | Neo4j URI | bolt://localhost:7687 |
     | API Port | 8000 |
     | UI Port | 8501 |
-    """)
+    """
+    )
 
 
 # =============================================================================
@@ -997,39 +1049,51 @@ def page_status():
 
 def main():
     """Hauptfunktion."""
-    
+
     # Session State
     if "page" not in st.session_state:
         st.session_state.page = "analysis"
-    
+
     # Header
     render_header()
-    
+
     # Navigation
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        if st.button("Analyse", use_container_width=True, 
-                     type="primary" if st.session_state.page == "analysis" else "secondary"):
+        if st.button(
+            "Analyse",
+            use_container_width=True,
+            type="primary" if st.session_state.page == "analysis" else "secondary",
+        ):
             st.session_state.page = "analysis"
             st.rerun()
     with col2:
-        if st.button("Datenbank", use_container_width=True,
-                     type="primary" if st.session_state.page == "database" else "secondary"):
+        if st.button(
+            "Datenbank",
+            use_container_width=True,
+            type="primary" if st.session_state.page == "database" else "secondary",
+        ):
             st.session_state.page = "database"
             st.rerun()
     with col3:
-        if st.button("Quellen", use_container_width=True,
-                     type="primary" if st.session_state.page == "sources" else "secondary"):
+        if st.button(
+            "Quellen",
+            use_container_width=True,
+            type="primary" if st.session_state.page == "sources" else "secondary",
+        ):
             st.session_state.page = "sources"
             st.rerun()
     with col4:
-        if st.button("Status", use_container_width=True,
-                     type="primary" if st.session_state.page == "status" else "secondary"):
+        if st.button(
+            "Status",
+            use_container_width=True,
+            type="primary" if st.session_state.page == "status" else "secondary",
+        ):
             st.session_state.page = "status"
             st.rerun()
-    
+
     render_divider()
-    
+
     # Page Content
     if st.session_state.page == "analysis":
         page_analysis()
@@ -1039,7 +1103,7 @@ def main():
         page_sources()
     elif st.session_state.page == "status":
         page_status()
-    
+
     # Footer
     render_footer()
 

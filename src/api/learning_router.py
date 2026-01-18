@@ -30,6 +30,7 @@ router = APIRouter(prefix="/learning", tags=["Self-Learning"])
 # Models
 # =============================================================================
 
+
 class MiningResult(BaseModel):
     success: bool
     geographic: int = 0
@@ -67,6 +68,7 @@ class TrainingItem(BaseModel):
 
 class SearchResultItem(BaseModel):
     """v3: BM25 Search Result."""
+
     id: str
     claim: str
     score: float
@@ -78,6 +80,7 @@ class SearchResultItem(BaseModel):
 
 class SearchResponse(BaseModel):
     """v3: Search Response."""
+
     query: str
     total: int
     results: List[SearchResultItem]
@@ -87,20 +90,21 @@ class SearchResponse(BaseModel):
 # Mining Endpoints
 # =============================================================================
 
+
 @router.post("/mine", response_model=MiningResult)
 async def mine_facts():
     """
     Startet Fact-Mining aus autoritativen Quellen.
-    
+
     v3: Parallele Ausfuehrung (4x schneller).
     """
     try:
         from src.ml.self_improver import get_self_improver
-        
+
         logger.info("Starting parallel fact mining (v3)...")
         system = get_self_improver()
         stats = await system.mine_facts()
-        
+
         return MiningResult(
             success=True,
             geographic=stats.get("geographic", 0),
@@ -116,7 +120,7 @@ async def mine_facts():
             debug=stats.get("debug", {}),
             offsets=stats.get("offsets", {}),
         )
-        
+
     except Exception as e:
         logger.error(f"Mining failed: {e}", exc_info=True)
         return MiningResult(success=False, errors=[str(e)])
@@ -127,10 +131,10 @@ async def get_stats():
     """Knowledge Base Statistiken."""
     try:
         from src.ml.self_improver import get_self_improver
-        
+
         system = get_self_improver()
         stats = system.get_stats()
-        
+
         return StatsResponse(
             total_facts=stats.get("total_facts", 0),
             by_source=stats.get("by_source", {}),
@@ -149,13 +153,13 @@ async def get_sample(limit: int = 20, source: Optional[str] = None):
     """Stichprobe der Fakten."""
     try:
         from src.ml.self_improver import get_self_improver
-        
+
         system = get_self_improver()
         data = system.get_training_data(limit=1000)
-        
+
         if source:
             data = [d for d in data if d.get("source") == source]
-        
+
         return {"total": len(data), "sample": data[:limit]}
     except Exception as e:
         return {"error": str(e), "total": 0, "sample": []}
@@ -165,24 +169,27 @@ async def get_sample(limit: int = 20, source: Optional[str] = None):
 # v3: BM25 Search Endpoint
 # =============================================================================
 
+
 @router.get("/search", response_model=SearchResponse)
 async def search_kb(
     query: str = Query(..., min_length=2, description="Suchbegriff"),
     top_k: int = Query(default=5, ge=1, le=20, description="Anzahl Ergebnisse"),
-    threshold: float = Query(default=0.3, ge=0.0, le=1.0, description="Minimaler BM25 Score"),
+    threshold: float = Query(
+        default=0.3, ge=0.0, le=1.0, description="Minimaler BM25 Score"
+    ),
 ):
     """
     v3: BM25 Search in der Knowledge Base.
-    
+
     Durchsucht die lokale Faktenbasis mit BM25 Algorithmus.
     +25% precision gegenueber Jaccard.
     """
     try:
         from src.ml.fact_checker import get_fact_checker
-        
+
         checker = get_fact_checker()
         results = checker.search_kb(query, top_k=top_k, threshold=threshold)
-        
+
         return SearchResponse(
             query=query,
             total=len(results),
@@ -197,9 +204,9 @@ async def search_kb(
                     claim_type=r.claim_type,
                 )
                 for r in results
-            ]
+            ],
         )
-        
+
     except Exception as e:
         logger.error(f"Search failed: {e}")
         raise HTTPException(status_code=500, detail=str(e))
@@ -208,6 +215,7 @@ async def search_kb(
 # =============================================================================
 # Training Data
 # =============================================================================
+
 
 @router.get("/training-data")
 async def get_training_data(
@@ -219,26 +227,26 @@ async def get_training_data(
 ):
     """
     Trainingsdaten fuer ML.
-    
+
     v3: balanced=true fuer ausgewogene Daten.
     """
     try:
         from src.ml.self_improver import get_self_improver
-        
+
         system = get_self_improver()
         data = system.get_training_data(limit=10000, balanced=balanced)
-        
+
         if claim_type:
             data = [d for d in data if d.get("claim_type") == claim_type]
         if only_true:
             data = [d for d in data if d.get("is_true")]
         if only_false:
             data = [d for d in data if not d.get("is_true")]
-        
+
         return {
             "total": len(data),
             "balanced": balanced,
-            "items": [TrainingItem(**d) for d in data[:limit]]
+            "items": [TrainingItem(**d) for d in data[:limit]],
         }
     except Exception as e:
         return {"error": str(e), "total": 0, "items": []}
@@ -248,19 +256,20 @@ async def get_training_data(
 # Health & Utils
 # =============================================================================
 
+
 @router.get("/health")
 async def health():
     """Self-Learning System Status."""
     try:
         from src.ml.self_improver import get_self_improver
         from src.ml.fact_checker import get_fact_checker
-        
+
         system = get_self_improver()
         checker = get_fact_checker()
-        
+
         stats = system.get_stats()
         cache_stats = checker.get_cache_stats()
-        
+
         return {
             "status": "ok",
             "version": "3.0",
@@ -278,14 +287,14 @@ async def reload_kb():
     """Laedt Knowledge Base im Fact Checker neu."""
     try:
         from src.ml.fact_checker import get_fact_checker
-        
+
         checker = get_fact_checker()
         checker.reload_kb()
-        
+
         stats = checker.get_cache_stats()
-        
+
         return {
-            "success": True, 
+            "success": True,
             "message": "Knowledge Base reloaded with BM25 index",
             "facts": stats.get("local_kb", {}).get("facts", 0),
             "bm25": stats.get("local_kb", {}).get("bm25", {}),
@@ -298,28 +307,28 @@ async def reload_kb():
 async def test_wikidata():
     """Testet Wikidata-Verbindung."""
     import httpx
-    
+
     sparql = """
     SELECT ?countryLabel WHERE {
         ?country wdt:P31 wd:Q6256 .
         SERVICE wikibase:label { bd:serviceParam wikibase:language "de". }
     } LIMIT 5
     """
-    
+
     try:
         async with httpx.AsyncClient(timeout=30.0) as client:
             response = await client.get(
                 "https://query.wikidata.org/sparql",
                 params={"query": sparql, "format": "json"},
-                headers={"User-Agent": "Veritas-Test/3.0"}
+                headers={"User-Agent": "Veritas-Test/3.0"},
             )
-            
+
             if response.status_code != 200:
                 return {"success": False, "status": response.status_code}
-            
+
             results = response.json().get("results", {}).get("bindings", [])
             countries = [r.get("countryLabel", {}).get("value", "") for r in results]
-            
+
             return {"success": True, "results_count": len(results), "sample": countries}
     except Exception as e:
         return {"success": False, "error": str(e)}

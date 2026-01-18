@@ -21,7 +21,7 @@ class TestPersonNode:
     def test_create_minimal_person(self):
         """Test: Minimale Person-Erstellung."""
         person = PersonNode(name="Napoleon Bonaparte")
-        
+
         assert person.name == "Napoleon Bonaparte"
         assert person.node_type == NodeType.PERSON
         assert person.source_label == SourceLabel.CLAIM
@@ -37,7 +37,7 @@ class TestPersonNode:
             nationality="French",
             occupation=["Emperor", "Military Leader"],
         )
-        
+
         assert person.birth_date == date(1769, 8, 15)
         assert "Napoleon" in person.aliases
         assert "Emperor" in person.occupation
@@ -78,7 +78,7 @@ class TestRelationship:
             target_name="Battle of Waterloo",
             target_type=NodeType.EVENT,
         )
-        
+
         assert rel.relation_type == RelationType.PARTICIPATED_IN
         assert rel.confidence == 1.0
 
@@ -91,7 +91,7 @@ class TestRelationship:
             target_name="  Waterloo  ",
             target_type=NodeType.EVENT,
         )
-        
+
         assert rel.source_name == "Napoleon"
         assert rel.target_name == "Waterloo"
 
@@ -116,7 +116,7 @@ class TestKnowledgeGraphExtraction:
                 )
             ],
         )
-        
+
         triples = extraction.get_triples()
         assert len(triples) == 1
         assert triples[0] == ("Napoleon", "PARTICIPATED_IN", "Waterloo")
@@ -130,9 +130,9 @@ class TestKnowledgeGraphExtraction:
                 EventNode(name="Waterloo"),
             ],
         )
-        
+
         persons = extraction.get_nodes_by_type(NodeType.PERSON)
         assert len(persons) == 2
-        
+
         events = extraction.get_nodes_by_type(NodeType.EVENT)
         assert len(events) == 1

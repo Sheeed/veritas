@@ -19,7 +19,7 @@ __all__ = [
     "VeritasAnalyzer",
     "get_analyzer",
     "format_analysis_ascii",
-    "format_analysis_markdown", 
+    "format_analysis_markdown",
     "format_analysis_html",
     "format_myth_ascii",
     "HISTORIAN_SYSTEM_PROMPT",

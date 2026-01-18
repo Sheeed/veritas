@@ -59,7 +59,9 @@ class NodeBase(BaseModel):
     """Basisklasse für alle Knoten mit gemeinsamen Attributen."""
 
     id: UUID = Field(default_factory=uuid4, description="Eindeutige Knoten-ID")
-    name: str = Field(..., min_length=1, max_length=500, description="Primärer Name/Bezeichner")
+    name: str = Field(
+        ..., min_length=1, max_length=500, description="Primärer Name/Bezeichner"
+    )
     description: str | None = Field(
         default=None, max_length=2000, description="Optionale Beschreibung"
     )
@@ -83,8 +85,12 @@ class PersonNode(NodeBase):
     """Repräsentiert eine historische oder aktuelle Person."""
 
     node_type: Literal[NodeType.PERSON] = NodeType.PERSON
-    birth_date: date | None = Field(default=None, description="Geburtsdatum (YYYY-MM-DD)")
-    death_date: date | None = Field(default=None, description="Sterbedatum (YYYY-MM-DD)")
+    birth_date: date | None = Field(
+        default=None, description="Geburtsdatum (YYYY-MM-DD)"
+    )
+    death_date: date | None = Field(
+        default=None, description="Sterbedatum (YYYY-MM-DD)"
+    )
     nationality: str | None = Field(default=None, max_length=100)
     occupation: list[str] = Field(default_factory=list, description="Berufe/Rollen")
 
@@ -129,7 +135,7 @@ class LocationNode(NodeBase):
 class DateNode(NodeBase):
     """
     Repräsentiert ein spezifisches Datum oder Zeitraum.
-    
+
     Wichtig für chronologische Konsistenzprüfungen.
     """
 
@@ -153,7 +159,9 @@ class OrganizationNode(NodeBase):
     )
     founded_date: date | None = Field(default=None)
     dissolved_date: date | None = Field(default=None)
-    headquarters: str | None = Field(default=None, description="Hauptsitz (Location Name)")
+    headquarters: str | None = Field(
+        default=None, description="Hauptsitz (Location Name)"
+    )
 
 
 # Union Type für alle Nodes
@@ -171,7 +179,7 @@ AnyNode = Annotated[
 class Relationship(BaseModel):
     """
     Repräsentiert eine gerichtete Beziehung zwischen zwei Knoten.
-    
+
     Das Triple-Format: (source) -[relationship]-> (target)
     """
 
@@ -181,7 +189,7 @@ class Relationship(BaseModel):
     relation_type: RelationType = Field(..., description="Art der Beziehung")
     target_name: str = Field(..., description="Name des Zielknotens")
     target_type: NodeType = Field(..., description="Typ des Zielknotens")
-    
+
     # Metadaten
     source_label: SourceLabel = Field(default=SourceLabel.CLAIM)
     confidence: float = Field(default=1.0, ge=0.0, le=1.0)
@@ -204,7 +212,7 @@ class Relationship(BaseModel):
 class KnowledgeGraphExtraction(BaseModel):
     """
     Vollständiges Extraktionsergebnis vom LLM.
-    
+
     Enthält alle extrahierten Knoten und Beziehungen aus einem Text.
     """
 

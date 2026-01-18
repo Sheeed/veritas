@@ -23,15 +23,15 @@ class Settings(BaseSettings):
 
     # LLM Provider: "openai", "groq", "mistral"
     llm_provider: str = "groq"
-    
+
     # OpenAI
     openai_api_key: str = ""
     openai_model: str = "gpt-4o"
-    
+
     # Groq (KOSTENLOS)
     groq_api_key: str = ""
     groq_model: str = "llama-3.3-70b-versatile"
-    
+
     # Mistral
     mistral_api_key: str = ""
     mistral_model: str = "mistral-large-latest"
@@ -53,7 +53,7 @@ class Settings(BaseSettings):
     # Logging
     log_level: str = "INFO"
     debug: bool = False
-    
+
     def get_active_api_key(self) -> str:
         """Gibt den API Key fuer den aktiven Provider zurueck."""
         keys = {
@@ -62,7 +62,7 @@ class Settings(BaseSettings):
             "mistral": self.mistral_api_key,
         }
         return keys.get(self.llm_provider, "")
-    
+
     def get_active_model(self) -> str:
         """Gibt das Modell fuer den aktiven Provider zurueck."""
         models = {

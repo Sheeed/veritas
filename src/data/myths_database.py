@@ -41,14 +41,14 @@ MYTH_NAPOLEON_HEIGHT = HistoricalMyth(
         date="1803-1815",
         reason="Kriegspropaganda zur Verspottung des Feindes",
         original_context="Der Karikaturist James Gillray stellte Napoleon als winzig dar",
-        spread_mechanism="Karikaturen, Pamphlete, spaeter Populaerkultur"
+        spread_mechanism="Karikaturen, Pamphlete, spaeter Populaerkultur",
     ),
     sources=[
         Source(
-            type=SourceType.PRIMARY, 
-            title="Autopsiebericht von Dr. Francesco Antommarchi", 
+            type=SourceType.PRIMARY,
+            title="Autopsiebericht von Dr. Francesco Antommarchi",
             year=1821,
-            quote="5 Fuss 2 Zoll (franzoesisches Mass) = 1,69m"
+            quote="5 Fuss 2 Zoll (franzoesisches Mass) = 1,69m",
         ),
         Source(
             type=SourceType.AUTHORITY,
@@ -57,9 +57,9 @@ MYTH_NAPOLEON_HEIGHT = HistoricalMyth(
             reliability=ConfidenceLevel.HIGH,
         ),
         Source(
-            type=SourceType.ACADEMIC, 
-            title="Napoleon: A Life", 
-            author="Andrew Roberts", 
+            type=SourceType.ACADEMIC,
+            title="Napoleon: A Life",
+            author="Andrew Roberts",
             year=2014,
         ),
     ],
@@ -83,12 +83,12 @@ MYTH_EINSTEIN_BAD_STUDENT = HistoricalMyth(
         source="Missverstaendnis des Schweizer Notensystems",
         date="ca. 1935",
         reason="Verwechslung: In der Schweiz ist 6 die beste Note, in Deutschland die schlechteste",
-        spread_mechanism="Anekdoten, Motivationsreden, Populaerkultur"
+        spread_mechanism="Anekdoten, Motivationsreden, Populaerkultur",
     ),
     sources=[
         Source(
-            type=SourceType.PRIMARY, 
-            title="Einsteins Maturitaetszeugnis 1896", 
+            type=SourceType.PRIMARY,
+            title="Einsteins Maturitaetszeugnis 1896",
             archive_id="ETH Zuerich, Hs 421:28",
             url="https://www.e-manuscripta.ch/zuznull/content/titleinfo/1481549",
             reliability=ConfidenceLevel.HIGH,
@@ -100,14 +100,23 @@ MYTH_EINSTEIN_BAD_STUDENT = HistoricalMyth(
             reliability=ConfidenceLevel.HIGH,
         ),
         Source(
-            type=SourceType.ACADEMIC, 
-            title="Einstein: His Life and Universe", 
-            author="Walter Isaacson", 
+            type=SourceType.ACADEMIC,
+            title="Einstein: His Life and Universe",
+            author="Walter Isaacson",
             year=2007,
         ),
     ],
     debunked_by=["Walter Isaacson", "ETH Zuerich Archive"],
-    keywords=["einstein", "schule", "mathematik", "durchgefallen", "failed", "math", "student", "genius"],
+    keywords=[
+        "einstein",
+        "schule",
+        "mathematik",
+        "durchgefallen",
+        "failed",
+        "math",
+        "student",
+        "genius",
+    ],
     popularity=90,
 )
 
@@ -125,14 +134,32 @@ MYTH_MARIE_ANTOINETTE_CAKE = HistoricalMyth(
         source="Rousseaus 'Bekenntnisse'",
         date="ca. 1765/1782",
         reason="Spaetere Zuschreibung zur Daemonisierung der Koenigin",
-        spread_mechanism="Revolutionaere Propaganda, spaeter Geschichtsbuecher"
+        spread_mechanism="Revolutionaere Propaganda, spaeter Geschichtsbuecher",
     ),
     sources=[
-        Source(type=SourceType.PRIMARY, title="Les Confessions", author="Jean-Jacques Rousseau", year=1782),
-        Source(type=SourceType.ACADEMIC, title="Marie Antoinette: The Journey", author="Antonia Fraser", year=2001),
+        Source(
+            type=SourceType.PRIMARY,
+            title="Les Confessions",
+            author="Jean-Jacques Rousseau",
+            year=1782,
+        ),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="Marie Antoinette: The Journey",
+            author="Antonia Fraser",
+            year=2001,
+        ),
     ],
     debunked_by=["Antonia Fraser"],
-    keywords=["marie antoinette", "kuchen", "cake", "brioche", "revolution", "france", "queen"],
+    keywords=[
+        "marie antoinette",
+        "kuchen",
+        "cake",
+        "brioche",
+        "revolution",
+        "france",
+        "queen",
+    ],
     popularity=95,
 )
 
@@ -150,11 +177,20 @@ MYTH_WASHINGTON_CHERRY_TREE = HistoricalMyth(
         source="Mason Locke Weems: 'The Life of Washington'",
         date="1806",
         reason="Moralische Erbauungsliteratur, Heldenverehrung",
-        spread_mechanism="Schulbuecher, Amerikanische Folklore"
+        spread_mechanism="Schulbuecher, Amerikanische Folklore",
     ),
     sources=[
-        Source(type=SourceType.ACADEMIC, title="Inventing George Washington", author="Edward Lengel", year=2011),
-        Source(type=SourceType.FACTCHECK, title="Mount Vernon Website", url="https://www.mountvernon.org"),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="Inventing George Washington",
+            author="Edward Lengel",
+            year=2011,
+        ),
+        Source(
+            type=SourceType.FACTCHECK,
+            title="Mount Vernon Website",
+            url="https://www.mountvernon.org",
+        ),
     ],
     debunked_by=["Edward Lengel", "Mount Vernon Estate"],
     keywords=["washington", "cherry tree", "kirschbaum", "cannot tell a lie", "honest"],
@@ -175,11 +211,16 @@ MYTH_NEWTON_APPLE = HistoricalMyth(
         source="Voltaire und spaetere Biographen",
         date="ca. 1726",
         reason="Vereinfachung und Dramatisierung wissenschaftlicher Entdeckung",
-        spread_mechanism="Voltaires Schriften, Biographien, Schulbuecher"
+        spread_mechanism="Voltaires Schriften, Biographien, Schulbuecher",
     ),
     sources=[
         Source(type=SourceType.PRIMARY, title="William Stukeleys Memoir", year=1752),
-        Source(type=SourceType.ACADEMIC, title="Never at Rest: A Biography of Isaac Newton", author="Richard Westfall", year=1980),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="Never at Rest: A Biography of Isaac Newton",
+            author="Richard Westfall",
+            year=1980,
+        ),
     ],
     debunked_by=["Richard Westfall"],
     keywords=["newton", "apfel", "apple", "gravity", "schwerkraft", "head", "kopf"],
@@ -200,14 +241,31 @@ MYTH_CLEOPATRA_BEAUTY = HistoricalMyth(
         source="Hollywood-Filme und romantisierte Darstellungen",
         date="20. Jahrhundert",
         reason="Romantisierung historischer Figuren, Orientalismus",
-        spread_mechanism="Filme, Romane, Populaerkultur"
+        spread_mechanism="Filme, Romane, Populaerkultur",
     ),
     sources=[
-        Source(type=SourceType.PRIMARY, title="Plutarch: Leben des Antonius", author="Plutarch"),
-        Source(type=SourceType.ACADEMIC, title="Cleopatra: A Life", author="Stacy Schiff", year=2010),
+        Source(
+            type=SourceType.PRIMARY,
+            title="Plutarch: Leben des Antonius",
+            author="Plutarch",
+        ),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="Cleopatra: A Life",
+            author="Stacy Schiff",
+            year=2010,
+        ),
     ],
     debunked_by=["Stacy Schiff", "Duane Roller"],
-    keywords=["cleopatra", "kleopatra", "beauty", "schoenheit", "egypt", "aegypten", "beautiful"],
+    keywords=[
+        "cleopatra",
+        "kleopatra",
+        "beauty",
+        "schoenheit",
+        "egypt",
+        "aegypten",
+        "beautiful",
+    ],
     popularity=75,
 )
 
@@ -225,11 +283,20 @@ MYTH_VIKING_HORNS = HistoricalMyth(
         source="Romantik des 19. Jahrhunderts, Wagners Opern",
         date="ca. 1870er",
         reason="Theatralische Darstellung, Nationalromantik",
-        spread_mechanism="Opern, Gemaelde, spaeter Filme und Comics"
+        spread_mechanism="Opern, Gemaelde, spaeter Filme und Comics",
     ),
     sources=[
-        Source(type=SourceType.ACADEMIC, title="The Viking World", author="Stefan Brink", year=2008),
-        Source(type=SourceType.PRIMARY, title="Gjermundbu Helmet", archive_id="Museum of Cultural History, Oslo"),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="The Viking World",
+            author="Stefan Brink",
+            year=2008,
+        ),
+        Source(
+            type=SourceType.PRIMARY,
+            title="Gjermundbu Helmet",
+            archive_id="Museum of Cultural History, Oslo",
+        ),
     ],
     debunked_by=["Roberta Frank", "Diverse Archaeologen"],
     keywords=["wikinger", "viking", "horns", "hoerner", "helmet", "helm", "horned"],
@@ -250,14 +317,32 @@ MYTH_EDISON_LIGHTBULB = HistoricalMyth(
         source="Amerikanische Geschichtsschreibung und Edison-PR",
         date="1880er",
         reason="Heldenverehrung, Vereinfachung komplexer Innovationsgeschichte",
-        spread_mechanism="Schulbuecher, Firmengeschichte, Populaerkultur"
+        spread_mechanism="Schulbuecher, Firmengeschichte, Populaerkultur",
     ),
     sources=[
-        Source(type=SourceType.ACADEMIC, title="The Age of Edison", author="Ernest Freeberg", year=2013),
-        Source(type=SourceType.ACADEMIC, title="Empires of Light", author="Jill Jonnes", year=2003),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="The Age of Edison",
+            author="Ernest Freeberg",
+            year=2013,
+        ),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="Empires of Light",
+            author="Jill Jonnes",
+            year=2003,
+        ),
     ],
     debunked_by=["Diverse Technikhistoriker"],
-    keywords=["edison", "gluehbirne", "lightbulb", "light bulb", "invention", "erfindung", "lamp"],
+    keywords=[
+        "edison",
+        "gluehbirne",
+        "lightbulb",
+        "light bulb",
+        "invention",
+        "erfindung",
+        "lamp",
+    ],
     popularity=78,
 )
 
@@ -275,14 +360,33 @@ MYTH_GALILEO_PRISON = HistoricalMyth(
         source="Aufklaerung und antikirchliche Polemik",
         date="18.-19. Jahrhundert",
         reason="Kirche vs. Wissenschaft Narrativ",
-        spread_mechanism="Aufklaererische Schriften, spaeter Populaerkultur"
+        spread_mechanism="Aufklaererische Schriften, spaeter Populaerkultur",
     ),
     sources=[
-        Source(type=SourceType.ACADEMIC, title="Galileo: Watcher of the Skies", author="David Wootton", year=2010),
-        Source(type=SourceType.ACADEMIC, title="The Crime of Galileo", author="Giorgio de Santillana", year=1955),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="Galileo: Watcher of the Skies",
+            author="David Wootton",
+            year=2010,
+        ),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="The Crime of Galileo",
+            author="Giorgio de Santillana",
+            year=1955,
+        ),
     ],
     debunked_by=["David Wootton", "John Heilbron"],
-    keywords=["galileo", "prison", "gefaengnis", "torture", "folter", "church", "kirche", "inquisition"],
+    keywords=[
+        "galileo",
+        "prison",
+        "gefaengnis",
+        "torture",
+        "folter",
+        "church",
+        "kirche",
+        "inquisition",
+    ],
     popularity=70,
 )
 
@@ -300,10 +404,15 @@ MYTH_JULIUS_CAESAR_SECTION = HistoricalMyth(
         source="Mittelalterliche Etymologie und Plinius",
         date="Mittelalter",
         reason="Falsche Etymologie und Wunsch nach dramatischer Geburtsgeschichte",
-        spread_mechanism="Medizinische Texte, Etymologie-Buecher"
+        spread_mechanism="Medizinische Texte, Etymologie-Buecher",
     ),
     sources=[
-        Source(type=SourceType.ACADEMIC, title="A History of Medicine", author="Plinio Prioreschi", year=1996),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="A History of Medicine",
+            author="Plinio Prioreschi",
+            year=1996,
+        ),
     ],
     debunked_by=["Medizinhistoriker"],
     keywords=["caesar", "kaiserschnitt", "caesarean", "c-section", "birth", "geburt"],
@@ -329,7 +438,7 @@ MYTH_CLEAN_WEHRMACHT = HistoricalMyth(
         source="Nachkriegs-Apologetik und Nuernberger Verteidigungsstrategie",
         date="1945-1950er",
         reason="Rehabilitation von Veteranen, Kalter Krieg, Selbstentlastung",
-        spread_mechanism="Veteranenverbaende, Memoiren, populaere Geschichtsbuecher"
+        spread_mechanism="Veteranenverbaende, Memoiren, populaere Geschichtsbuecher",
     ),
     sources=[
         Source(
@@ -348,7 +457,15 @@ MYTH_CLEAN_WEHRMACHT = HistoricalMyth(
     ],
     debunked_by=["Hamburger Institut fuer Sozialforschung", "Hannes Heer"],
     related_myths=["clean_army_narrative"],
-    keywords=["wehrmacht", "clean", "sauber", "ns", "nazi", "war crimes", "kriegsverbrechen"],
+    keywords=[
+        "wehrmacht",
+        "clean",
+        "sauber",
+        "ns",
+        "nazi",
+        "war crimes",
+        "kriegsverbrechen",
+    ],
     popularity=70,
 )
 
@@ -366,7 +483,7 @@ MYTH_DRESDEN_500K = HistoricalMyth(
         source="NS-Propaganda, spaeter David Irving",
         date="1945/1960er",
         reason="Relativierung deutscher Kriegsschuld, Revisionismus",
-        spread_mechanism="Propaganda, revisionistische Buecher"
+        spread_mechanism="Propaganda, revisionistische Buecher",
     ),
     sources=[
         Source(
@@ -378,7 +495,15 @@ MYTH_DRESDEN_500K = HistoricalMyth(
         ),
     ],
     debunked_by=["Dresdner Historikerkommission", "Richard Evans"],
-    keywords=["dresden", "bombing", "bombardierung", "500000", "opferzahl", "death toll", "ww2"],
+    keywords=[
+        "dresden",
+        "bombing",
+        "bombardierung",
+        "500000",
+        "opferzahl",
+        "death toll",
+        "ww2",
+    ],
     popularity=60,
 )
 
@@ -396,13 +521,26 @@ MYTH_FRENCH_SURRENDER = HistoricalMyth(
         source="Amerikanische Reaktion auf Frankreichs Irak-Kritik 2003",
         date="2003",
         reason="Politischer Streit ueber Irakkrieg, Stereotypen",
-        spread_mechanism="Medien, Internet-Memes, Populaerkultur"
+        spread_mechanism="Medien, Internet-Memes, Populaerkultur",
     ),
     sources=[
-        Source(type=SourceType.ACADEMIC, title="A History of Modern France", author="Jeremy Popkin", year=2012),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="A History of Modern France",
+            author="Jeremy Popkin",
+            year=2012,
+        ),
     ],
     debunked_by=["Militaerhistoriker"],
-    keywords=["france", "frankreich", "surrender", "kapitulation", "feige", "coward", "white flag"],
+    keywords=[
+        "france",
+        "frankreich",
+        "surrender",
+        "kapitulation",
+        "feige",
+        "coward",
+        "white flag",
+    ],
     popularity=72,
 )
 
@@ -420,14 +558,28 @@ MYTH_SPARTANS_300 = HistoricalMyth(
         source="Herodot (teilweise), spaeter Frank Miller's Comic",
         date="Antike / 1998",
         reason="Heldenverehrung, dramatische Vereinfachung",
-        spread_mechanism="Antike Quellen, Comics, Film '300' (2006)"
+        spread_mechanism="Antike Quellen, Comics, Film '300' (2006)",
     ),
     sources=[
         Source(type=SourceType.PRIMARY, title="Historien", author="Herodot", year=-440),
-        Source(type=SourceType.ACADEMIC, title="Thermopylae: The Battle That Changed the World", author="Paul Cartledge", year=2006),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="Thermopylae: The Battle That Changed the World",
+            author="Paul Cartledge",
+            year=2006,
+        ),
     ],
     debunked_by=["Paul Cartledge"],
-    keywords=["sparta", "spartaner", "300", "thermopylae", "thermopylen", "persien", "persia", "leonidas"],
+    keywords=[
+        "sparta",
+        "spartaner",
+        "300",
+        "thermopylae",
+        "thermopylen",
+        "persien",
+        "persia",
+        "leonidas",
+    ],
     popularity=85,
 )
 
@@ -445,10 +597,14 @@ MYTH_HUMAN_TRAFFICKING_ORGANS = HistoricalMyth(
         source="Geruechte und NS-Propaganda",
         date="1940er",
         reason="Geruechtebildung, spaeter unkritische Uebernahme",
-        spread_mechanism="Muendliche Ueberlieferung, Medien"
+        spread_mechanism="Muendliche Ueberlieferung, Medien",
     ),
     sources=[
-        Source(type=SourceType.ACADEMIC, title="Yad Vashem FAQ", url="https://www.yadvashem.org"),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="Yad Vashem FAQ",
+            url="https://www.yadvashem.org",
+        ),
     ],
     debunked_by=["Yad Vashem", "Joachim Neander"],
     keywords=["nazi", "soap", "seife", "holocaust", "myth"],
@@ -474,13 +630,26 @@ MYTH_COLUMBUS_FLAT_EARTH = HistoricalMyth(
         source="Washington Irvings Roman 'History of the Life and Voyages of Christopher Columbus'",
         date="1828",
         reason="Literarische Dramatisierung, Heldenverehrung",
-        spread_mechanism="Schulbuecher, Populaerkultur"
+        spread_mechanism="Schulbuecher, Populaerkultur",
     ),
     sources=[
-        Source(type=SourceType.ACADEMIC, title="Inventing the Flat Earth", author="Jeffrey Burton Russell", year=1991),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="Inventing the Flat Earth",
+            author="Jeffrey Burton Russell",
+            year=1991,
+        ),
     ],
     debunked_by=["Jeffrey Burton Russell"],
-    keywords=["kolumbus", "columbus", "flache erde", "flat earth", "kugelgestalt", "1492", "round"],
+    keywords=[
+        "kolumbus",
+        "columbus",
+        "flache erde",
+        "flat earth",
+        "kugelgestalt",
+        "1492",
+        "round",
+    ],
     popularity=85,
 )
 
@@ -498,14 +667,28 @@ MYTH_GREAT_WALL_SPACE = HistoricalMyth(
         source="Diverse fruehe Quellen, u.a. Henry Norman (1895)",
         date="vor dem Weltraumzeitalter",
         reason="Mythenbildung ueber ein beeindruckendes Bauwerk",
-        spread_mechanism="Schulbuecher, Tourismus-Werbung"
+        spread_mechanism="Schulbuecher, Tourismus-Werbung",
     ),
     sources=[
-        Source(type=SourceType.PRIMARY, title="Aussage von Yang Liwei (erster chinesischer Astronaut)", year=2003),
-        Source(type=SourceType.PRIMARY, title="NASA Statement", url="https://www.nasa.gov"),
+        Source(
+            type=SourceType.PRIMARY,
+            title="Aussage von Yang Liwei (erster chinesischer Astronaut)",
+            year=2003,
+        ),
+        Source(
+            type=SourceType.PRIMARY, title="NASA Statement", url="https://www.nasa.gov"
+        ),
     ],
     debunked_by=["Yang Liwei", "NASA"],
-    keywords=["chinesische mauer", "great wall", "weltraum", "space", "sichtbar", "visible", "china"],
+    keywords=[
+        "chinesische mauer",
+        "great wall",
+        "weltraum",
+        "space",
+        "sichtbar",
+        "visible",
+        "china",
+    ],
     popularity=90,
 )
 
@@ -523,14 +706,32 @@ MYTH_TITANIC_UNSINKABLE = HistoricalMyth(
         source="Zeitungsartikel und spaetere Dramatisierung",
         date="1912",
         reason="Dramatische Ironie nach dem Untergang",
-        spread_mechanism="Medien, Filme, Buecher"
+        spread_mechanism="Medien, Filme, Buecher",
     ),
     sources=[
-        Source(type=SourceType.ACADEMIC, title="A Night to Remember", author="Walter Lord", year=1955),
-        Source(type=SourceType.ACADEMIC, title="Titanic: The Ship Magnificent", author="Bruce Beveridge", year=2008),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="A Night to Remember",
+            author="Walter Lord",
+            year=1955,
+        ),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="Titanic: The Ship Magnificent",
+            author="Bruce Beveridge",
+            year=2008,
+        ),
     ],
     debunked_by=["Richard Howells"],
-    keywords=["titanic", "unsinkable", "unsinkbar", "ship", "schiff", "iceberg", "eisberg"],
+    keywords=[
+        "titanic",
+        "unsinkable",
+        "unsinkbar",
+        "ship",
+        "schiff",
+        "iceberg",
+        "eisberg",
+    ],
     popularity=88,
 )
 
@@ -548,13 +749,25 @@ MYTH_MEDIEVAL_FLAT_EARTH = HistoricalMyth(
         source="Washington Irving und spaetere Autoren",
         date="19. Jahrhundert",
         reason="Fortschrittsnarrativ der Aufklaerung",
-        spread_mechanism="Schulbuecher, Populaerkultur"
+        spread_mechanism="Schulbuecher, Populaerkultur",
     ),
     sources=[
-        Source(type=SourceType.ACADEMIC, title="Inventing the Flat Earth", author="Jeffrey Burton Russell", year=1991),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="Inventing the Flat Earth",
+            author="Jeffrey Burton Russell",
+            year=1991,
+        ),
     ],
     debunked_by=["Jeffrey Burton Russell", "Diverse Mediaevisten"],
-    keywords=["mittelalter", "medieval", "flat earth", "flache erde", "middle ages", "belief"],
+    keywords=[
+        "mittelalter",
+        "medieval",
+        "flat earth",
+        "flache erde",
+        "middle ages",
+        "belief",
+    ],
     popularity=75,
 )
 
@@ -572,13 +785,26 @@ MYTH_SALEM_BURNING = HistoricalMyth(
         source="Vermischung mit europaeischen Hexenprozessen",
         date="Spaeteres 17. Jahrhundert",
         reason="Verwechslung verschiedener Traditionen",
-        spread_mechanism="Populaerkultur, falsche Schulbuchdarstellungen"
+        spread_mechanism="Populaerkultur, falsche Schulbuchdarstellungen",
     ),
     sources=[
-        Source(type=SourceType.ACADEMIC, title="The Salem Witch Trials", author="Marilynne Roach", year=2002),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="The Salem Witch Trials",
+            author="Marilynne Roach",
+            year=2002,
+        ),
     ],
     debunked_by=["Salem Witch Museum", "Marilynne Roach"],
-    keywords=["salem", "witch", "hexe", "burning", "verbrennung", "stake", "scheiterhaufen"],
+    keywords=[
+        "salem",
+        "witch",
+        "hexe",
+        "burning",
+        "verbrennung",
+        "stake",
+        "scheiterhaufen",
+    ],
     popularity=68,
 )
 
@@ -596,11 +822,13 @@ MYTH_NERO_FIDDLE = HistoricalMyth(
         source="Spaetere Umdichtung antiker Berichte",
         date="Mittelalter/Neuzeit",
         reason="Anachronismus, Vermischung von Instrumenten",
-        spread_mechanism="Volksetymologie, Populaerkultur"
+        spread_mechanism="Volksetymologie, Populaerkultur",
     ),
     sources=[
         Source(type=SourceType.PRIMARY, title="Annalen", author="Tacitus"),
-        Source(type=SourceType.ACADEMIC, title="Nero", author="Edward Champlin", year=2003),
+        Source(
+            type=SourceType.ACADEMIC, title="Nero", author="Edward Champlin", year=2003
+        ),
     ],
     debunked_by=["Edward Champlin"],
     keywords=["nero", "fiddle", "geige", "rome", "rom", "fire", "brand", "burning"],
@@ -626,14 +854,31 @@ MYTH_DARK_AGES = HistoricalMyth(
         source="Renaissance-Humanisten (Petrarca)",
         date="14. Jahrhundert",
         reason="Selbstdarstellung der Renaissance als 'Wiedergeburt'",
-        spread_mechanism="Aufklaerung, Schulbuecher, Populaerkultur"
+        spread_mechanism="Aufklaerung, Schulbuecher, Populaerkultur",
     ),
     sources=[
-        Source(type=SourceType.ACADEMIC, title="The Light Ages", author="Seb Falk", year=2020),
-        Source(type=SourceType.ACADEMIC, title="Medieval Technology and Social Change", author="Lynn White Jr.", year=1962),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="The Light Ages",
+            author="Seb Falk",
+            year=2020,
+        ),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="Medieval Technology and Social Change",
+            author="Lynn White Jr.",
+            year=1962,
+        ),
     ],
     debunked_by=["Moderne Mediaevistik"],
-    keywords=["mittelalter", "dark ages", "dunkles zeitalter", "stagnation", "medieval", "ignorance"],
+    keywords=[
+        "mittelalter",
+        "dark ages",
+        "dunkles zeitalter",
+        "stagnation",
+        "medieval",
+        "ignorance",
+    ],
     popularity=75,
 )
 
@@ -651,13 +896,26 @@ MYTH_AMERICAN_INVENTION = HistoricalMyth(
         source="Amerikanischer Exzeptionalismus",
         date="19.-20. Jahrhundert",
         reason="Nationalstolz, vereinfachte Geschichtsdarstellung",
-        spread_mechanism="Schulbuecher, politische Rhetorik"
+        spread_mechanism="Schulbuecher, politische Rhetorik",
     ),
     sources=[
-        Source(type=SourceType.ACADEMIC, title="Democracy: A History", author="John Dunn", year=2005),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="Democracy: A History",
+            author="John Dunn",
+            year=2005,
+        ),
     ],
     debunked_by=["Politikwissenschaftler"],
-    keywords=["america", "amerika", "democracy", "demokratie", "invention", "erfindung", "greece"],
+    keywords=[
+        "america",
+        "amerika",
+        "democracy",
+        "demokratie",
+        "invention",
+        "erfindung",
+        "greece",
+    ],
     popularity=55,
 )
 
@@ -675,13 +933,25 @@ MYTH_BLOOD_RED_BLUE = HistoricalMyth(
         source="Schulbiologie-Vereinfachungen und Diagramme",
         date="20. Jahrhundert",
         reason="Didaktische Vereinfachung in Schaubildern",
-        spread_mechanism="Schulbuecher, Anatomie-Diagramme"
+        spread_mechanism="Schulbuecher, Anatomie-Diagramme",
     ),
     sources=[
-        Source(type=SourceType.ACADEMIC, title="Medical Physiology", author="Guyton & Hall"),
+        Source(
+            type=SourceType.ACADEMIC, title="Medical Physiology", author="Guyton & Hall"
+        ),
     ],
     debunked_by=["Mediziner"],
-    keywords=["blood", "blut", "blue", "blau", "red", "rot", "oxygen", "sauerstoff", "veins"],
+    keywords=[
+        "blood",
+        "blut",
+        "blue",
+        "blau",
+        "red",
+        "rot",
+        "oxygen",
+        "sauerstoff",
+        "veins",
+    ],
     popularity=65,
 )
 
@@ -704,11 +974,15 @@ MYTH_INTERNET_GORE = HistoricalMyth(
         source="Politische Gegner, Medien-Vereinfachung",
         date="1999",
         reason="Wahlkampf-Attacke, Missverstaendnis",
-        spread_mechanism="Medien, politische Satire, Internet-Memes"
+        spread_mechanism="Medien, politische Satire, Internet-Memes",
     ),
     sources=[
         Source(type=SourceType.PRIMARY, title="CNN Interview Transkript", year=1999),
-        Source(type=SourceType.ACADEMIC, title="Statement von Vint Cerf und Bob Kahn", year=2000),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="Statement von Vint Cerf und Bob Kahn",
+            year=2000,
+        ),
     ],
     debunked_by=["Vint Cerf", "Bob Kahn", "Snopes"],
     keywords=["al gore", "internet", "invented", "erfunden", "created", "initiative"],
@@ -729,13 +1003,26 @@ MYTH_5_SECOND_RULE = HistoricalMyth(
         source="Volksweisheit, moeglicherweise Dschingis Khan Legende",
         date="Unbekannt",
         reason="Wunschdenken, Bequemlichkeit",
-        spread_mechanism="Muendliche Ueberlieferung"
+        spread_mechanism="Muendliche Ueberlieferung",
     ),
     sources=[
-        Source(type=SourceType.ACADEMIC, title="Rutgers University Study", author="Donald Schaffner", year=2016),
+        Source(
+            type=SourceType.ACADEMIC,
+            title="Rutgers University Study",
+            author="Donald Schaffner",
+            year=2016,
+        ),
     ],
     debunked_by=["Donald Schaffner", "Rutgers University"],
-    keywords=["5 second rule", "5 sekunden regel", "floor", "boden", "bacteria", "bakterien", "food"],
+    keywords=[
+        "5 second rule",
+        "5 sekunden regel",
+        "floor",
+        "boden",
+        "bacteria",
+        "bakterien",
+        "food",
+    ],
     popularity=80,
 )
 
@@ -752,13 +1039,19 @@ NARRATIVE_CLEAN_ARMY = NarrativePattern(
     typical_claims=[
         "Die Armee hat nur Befehle befolgt",
         "Die Verbrechen wurden von anderen begangen",
-        "Die einfachen Soldaten wussten von nichts"
+        "Die einfachen Soldaten wussten von nichts",
     ],
-    keywords=["saubere armee", "clean army", "nur befehle", "just orders", "wussten nichts"],
+    keywords=[
+        "saubere armee",
+        "clean army",
+        "nur befehle",
+        "just orders",
+        "wussten nichts",
+    ],
     origin="Nuernberger Prozesse 1945-1946",
     purpose="Entlastung von Veteranen und Institutionen",
     examples=["clean_wehrmacht"],
-    counter_narrative="Historische Forschung zeigt systematische Beteiligung regulaerer Armeen an Kriegsverbrechen."
+    counter_narrative="Historische Forschung zeigt systematische Beteiligung regulaerer Armeen an Kriegsverbrechen.",
 )
 
 NARRATIVE_VICTIM_NUMBERS = NarrativePattern(
@@ -769,7 +1062,7 @@ NARRATIVE_VICTIM_NUMBERS = NarrativePattern(
     typical_claims=[
         "Es waren viel mehr Tote als offiziell zugegeben",
         "Die wahren Zahlen werden verschwiegen",
-        "Historiker luegen ueber die Opferzahlen"
+        "Historiker luegen ueber die Opferzahlen",
     ],
     keywords=["opferzahlen", "victim numbers", "verschwiegen", "covered up"],
     purpose="Delegitimierung von Gegnern, Opferkonkurrenz",
@@ -784,11 +1077,11 @@ NARRATIVE_GREAT_LEADER = NarrativePattern(
     typical_claims=[
         "X hat im Alleingang Y erreicht",
         "Ohne X waere Y nie passiert",
-        "X war ein Genie, das seiner Zeit voraus war"
+        "X war ein Genie, das seiner Zeit voraus war",
     ],
     keywords=["grosser mann", "great man", "genie", "genius", "visionaer", "visionary"],
     purpose="Vereinfachung komplexer Geschichte, Heldenverehrung",
-    counter_narrative="Geschichte wird von vielen Faktoren geformt: Strukturen, Gruppen, Zufaelle, nicht nur Individuen."
+    counter_narrative="Geschichte wird von vielen Faktoren geformt: Strukturen, Gruppen, Zufaelle, nicht nur Individuen.",
 )
 
 NARRATIVE_GOLDEN_AGE = NarrativePattern(
@@ -799,11 +1092,17 @@ NARRATIVE_GOLDEN_AGE = NarrativePattern(
     typical_claims=[
         "Frueher war alles besser",
         "Die Menschen waren frueher ehrlicher/fleissiger",
-        "Die Gesellschaft ist verfallen"
+        "Die Gesellschaft ist verfallen",
     ],
-    keywords=["frueher war alles besser", "golden age", "verfall", "decline", "good old days"],
+    keywords=[
+        "frueher war alles besser",
+        "golden age",
+        "verfall",
+        "decline",
+        "good old days",
+    ],
     purpose="Kritik an Gegenwart, Nostalgie, politische Mobilisierung",
-    counter_narrative="Jede Epoche hatte ihre Probleme. Viele Metriken (Gesundheit, Lebenserwartung, Gewalt) haben sich verbessert."
+    counter_narrative="Jede Epoche hatte ihre Probleme. Viele Metriken (Gesundheit, Lebenserwartung, Gewalt) haben sich verbessert.",
 )
 
 NARRATIVE_SUPPRESSED_TRUTH = NarrativePattern(
@@ -814,11 +1113,17 @@ NARRATIVE_SUPPRESSED_TRUTH = NarrativePattern(
     typical_claims=[
         "Das wird uns nicht gesagt",
         "Die Mainstream-Historiker verschweigen...",
-        "Die wahre Geschichte ist..."
+        "Die wahre Geschichte ist...",
     ],
-    keywords=["verschwiegen", "suppressed", "hidden history", "verborgene geschichte", "mainstream"],
+    keywords=[
+        "verschwiegen",
+        "suppressed",
+        "hidden history",
+        "verborgene geschichte",
+        "mainstream",
+    ],
     purpose="Diskreditierung etablierter Forschung, Alternative Narrative",
-    counter_narrative="Historische Forschung ist offen und selbstkorrigierend. Neue Erkenntnisse werden publiziert und debattiert."
+    counter_narrative="Historische Forschung ist offen und selbstkorrigierend. Neue Erkenntnisse werden publiziert und debattiert.",
 )
 
 
@@ -826,11 +1131,12 @@ NARRATIVE_SUPPRESSED_TRUTH = NarrativePattern(
 # Datenbank initialisieren
 # =============================================================================
 
+
 def create_initial_database() -> MythDatabase:
     """Erstellt die erweiterte Mythen-Datenbank v2.0."""
-    
+
     db = MythDatabase()
-    
+
     # Alle Mythen hinzufuegen
     myths = [
         # Personen-Mythen
@@ -844,14 +1150,12 @@ def create_initial_database() -> MythDatabase:
         MYTH_EDISON_LIGHTBULB,
         MYTH_GALILEO_PRISON,
         MYTH_JULIUS_CAESAR_SECTION,
-        
         # Kriegs-Mythen
         MYTH_CLEAN_WEHRMACHT,
         MYTH_DRESDEN_500K,
         MYTH_FRENCH_SURRENDER,
         MYTH_SPARTANS_300,
         MYTH_HUMAN_TRAFFICKING_ORGANS,
-        
         # Ereignis-Mythen
         MYTH_COLUMBUS_FLAT_EARTH,
         MYTH_GREAT_WALL_SPACE,
@@ -859,20 +1163,18 @@ def create_initial_database() -> MythDatabase:
         MYTH_MEDIEVAL_FLAT_EARTH,
         MYTH_SALEM_BURNING,
         MYTH_NERO_FIDDLE,
-        
         # Ursprungs-Mythen
         MYTH_DARK_AGES,
         MYTH_AMERICAN_INVENTION,
         MYTH_BLOOD_RED_BLUE,
-        
         # Technologie-Mythen
         MYTH_INTERNET_GORE,
         MYTH_5_SECOND_RULE,
     ]
-    
+
     for myth in myths:
         db.myths[myth.id] = myth
-    
+
     # Alle Narrative hinzufuegen
     narratives = [
         NARRATIVE_CLEAN_ARMY,
@@ -881,10 +1183,10 @@ def create_initial_database() -> MythDatabase:
         NARRATIVE_GOLDEN_AGE,
         NARRATIVE_SUPPRESSED_TRUTH,
     ]
-    
+
     for narrative in narratives:
         db.narratives[narrative.id] = narrative
-    
+
     return db
 
 
@@ -901,10 +1203,11 @@ def get_myths_database() -> MythDatabase:
 # Statistics Helper
 # =============================================================================
 
+
 def get_database_stats() -> dict:
     """Gibt Statistiken ueber die Datenbank zurueck."""
     db = MYTHS_DATABASE
-    
+
     stats = {
         "total_myths": len(db.myths),
         "total_narratives": len(db.narratives),
@@ -912,18 +1215,24 @@ def get_database_stats() -> dict:
         "myths_by_era": {},
         "myths_by_status": {},
     }
-    
+
     for myth in db.myths.values():
         # By category
-        cat = myth.category.value if hasattr(myth.category, 'value') else str(myth.category)
+        cat = (
+            myth.category.value
+            if hasattr(myth.category, "value")
+            else str(myth.category)
+        )
         stats["myths_by_category"][cat] = stats["myths_by_category"].get(cat, 0) + 1
-        
+
         # By era
-        era = myth.era.value if hasattr(myth.era, 'value') else str(myth.era)
+        era = myth.era.value if hasattr(myth.era, "value") else str(myth.era)
         stats["myths_by_era"][era] = stats["myths_by_era"].get(era, 0) + 1
-        
+
         # By status
-        status = myth.status.value if hasattr(myth.status, 'value') else str(myth.status)
+        status = (
+            myth.status.value if hasattr(myth.status, "value") else str(myth.status)
+        )
         stats["myths_by_status"][status] = stats["myths_by_status"].get(status, 0) + 1
-    
+
     return stats

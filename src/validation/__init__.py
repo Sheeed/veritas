@@ -1,4 +1,5 @@
 """Validation and verification module."""
+
 from .validator import (
     ClaimValidator,
     ChronologyValidator,
@@ -10,7 +11,7 @@ from .validator import (
 
 __all__ = [
     "ClaimValidator",
-    "ChronologyValidator", 
+    "ChronologyValidator",
     "EntityResolver",
     "FullValidationResult",
     "ValidationIssue",

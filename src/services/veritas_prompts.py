@@ -173,20 +173,19 @@ Analyse:
 # Main Prompts with Few-Shot
 # =============================================================================
 
+
 def build_fact_check_prompt(
-    claim: str,
-    source_info: str,
-    myths_context: Optional[str] = None
+    claim: str, source_info: str, myths_context: Optional[str] = None
 ) -> str:
     """Baut den Faktencheck-Prompt mit Few-Shot und Kontext."""
-    
+
     context_section = ""
     if myths_context:
         context_section = f"""
 BEKANNTE MYTHEN AUS DATENBANK:
 {myths_context}
 """
-    
+
     return f"""{FEW_SHOT_FACT_CHECK}
 
 ---
@@ -213,7 +212,7 @@ Antworte NUR im JSON-Format:
 
 def build_context_analysis_prompt(claim: str, fact_status: str) -> str:
     """Baut den Kontext-Analyse-Prompt."""
-    
+
     return f"""{FEW_SHOT_CONTEXT_ANALYSIS}
 
 ---
@@ -235,12 +234,9 @@ Antworte NUR im JSON-Format:
 }}"""
 
 
-def build_narrative_analysis_prompt(
-    claim: str,
-    known_narratives: str
-) -> str:
+def build_narrative_analysis_prompt(claim: str, known_narratives: str) -> str:
     """Baut den Narrativ-Analyse-Prompt."""
-    
+
     return f"""{FEW_SHOT_NARRATIVE}
 
 ---
@@ -268,7 +264,7 @@ Antworte NUR im JSON-Format:
 
 def build_claim_extraction_prompt(text: str) -> str:
     """Baut den Claim-Extraktions-Prompt."""
-    
+
     return f"""Analysiere den folgenden Text und extrahiere alle historischen Behauptungen.
 
 TEXT:
@@ -299,10 +295,10 @@ def build_verdict_prompt(
     original_text: str,
     claims_summary: str,
     context_summary: str,
-    narrative_summary: str
+    narrative_summary: str,
 ) -> str:
     """Baut den Gesamturteil-Prompt."""
-    
+
     return f"""Basierend auf der vollstaendigen Analyse, erstelle ein Gesamturteil.
 
 ORIGINAL-TEXT:
@@ -347,28 +343,18 @@ FACT_CHECK_SCHEMA = {
         "reasoning": {
             "type": "array",
             "items": {"type": "string"},
-            "description": "Schrittweise Analyse"
+            "description": "Schrittweise Analyse",
         },
         "fact_status": {
             "type": "string",
-            "enum": ["confirmed", "likely", "disputed", "unverified", "false", "myth"]
+            "enum": ["confirmed", "likely", "disputed", "unverified", "false", "myth"],
         },
-        "confidence_score": {
-            "type": "number",
-            "minimum": 0.0,
-            "maximum": 1.0
-        },
-        "what_is_true": {
-            "type": "array",
-            "items": {"type": "string"}
-        },
-        "what_is_false": {
-            "type": "array",
-            "items": {"type": "string"}
-        },
-        "explanation": {"type": "string"}
+        "confidence_score": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+        "what_is_true": {"type": "array", "items": {"type": "string"}},
+        "what_is_false": {"type": "array", "items": {"type": "string"}},
+        "explanation": {"type": "string"},
     },
-    "required": ["fact_status", "confidence_score", "what_is_true", "what_is_false"]
+    "required": ["fact_status", "confidence_score", "what_is_true", "what_is_false"],
 }
 
 CONTEXT_SCHEMA = {
@@ -376,15 +362,21 @@ CONTEXT_SCHEMA = {
     "properties": {
         "context_status": {
             "type": "string",
-            "enum": ["complete", "simplified", "selective", "decontextualized", "misleading"]
+            "enum": [
+                "complete",
+                "simplified",
+                "selective",
+                "decontextualized",
+                "misleading",
+            ],
         },
         "missing_timeframe": {"type": ["string", "null"]},
         "missing_perspectives": {"type": "array", "items": {"type": "string"}},
         "missing_causes": {"type": "array", "items": {"type": "string"}},
         "missing_consequences": {"type": "array", "items": {"type": "string"}},
-        "important_omissions": {"type": "array", "items": {"type": "string"}}
+        "important_omissions": {"type": "array", "items": {"type": "string"}},
     },
-    "required": ["context_status"]
+    "required": ["context_status"],
 }
 
 NARRATIVE_SCHEMA = {
@@ -392,13 +384,13 @@ NARRATIVE_SCHEMA = {
     "properties": {
         "narrative_status": {
             "type": "string",
-            "enum": ["neutral", "perspectival", "biased", "propaganda", "revisionism"]
+            "enum": ["neutral", "perspectival", "biased", "propaganda", "revisionism"],
         },
         "matched_narrative_id": {"type": ["string", "null"]},
         "matching_confidence": {"type": "number"},
         "matching_elements": {"type": "array", "items": {"type": "string"}},
         "likely_purpose": {"type": ["string", "null"]},
-        "origin_hint": {"type": ["string", "null"]}
+        "origin_hint": {"type": ["string", "null"]},
     },
-    "required": ["narrative_status"]
+    "required": ["narrative_status"],
 }

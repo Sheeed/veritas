@@ -1,4 +1,5 @@
 """Data sources integration."""
+
 from .external import (
     DataSourceManager,
     WikidataSource,

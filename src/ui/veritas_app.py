@@ -30,7 +30,8 @@ API_URL = "http://localhost:8000"
 # Styles
 # =============================================================================
 
-st.markdown("""
+st.markdown(
+    """
 <style>
 /* Dark Theme */
 .stApp { background-color: #0e1117; }
@@ -64,7 +65,9 @@ st.markdown("""
     margin: 16px 0;
 }
 </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
 
 # =============================================================================
@@ -80,6 +83,7 @@ if "claim" not in st.session_state:
 # =============================================================================
 # API Helpers
 # =============================================================================
+
 
 def api_get(endpoint: str) -> Optional[Dict]:
     """GET Request an API."""
@@ -114,30 +118,46 @@ def api_post(endpoint: str, data: Dict = None) -> Optional[Dict]:
 with st.sidebar:
     st.title("Veritas")
     st.caption("Self-Improving Fact Checker v0.7.1")
-    
+
     st.divider()
-    
-    if st.button("Start", use_container_width=True, type="primary" if st.session_state.page == "home" else "secondary"):
+
+    if st.button(
+        "Start",
+        use_container_width=True,
+        type="primary" if st.session_state.page == "home" else "secondary",
+    ):
         st.session_state.page = "home"
         st.rerun()
-    
-    if st.button("Faktencheck", use_container_width=True, type="primary" if st.session_state.page == "check" else "secondary"):
+
+    if st.button(
+        "Faktencheck",
+        use_container_width=True,
+        type="primary" if st.session_state.page == "check" else "secondary",
+    ):
         st.session_state.page = "check"
         st.rerun()
-    
+
     st.divider()
     st.caption("Self-Learning")
-    
-    if st.button("Knowledge Base", use_container_width=True, type="primary" if st.session_state.page == "kb" else "secondary"):
+
+    if st.button(
+        "Knowledge Base",
+        use_container_width=True,
+        type="primary" if st.session_state.page == "kb" else "secondary",
+    ):
         st.session_state.page = "kb"
         st.rerun()
-    
-    if st.button("Mining", use_container_width=True, type="primary" if st.session_state.page == "mining" else "secondary"):
+
+    if st.button(
+        "Mining",
+        use_container_width=True,
+        type="primary" if st.session_state.page == "mining" else "secondary",
+    ):
         st.session_state.page = "mining"
         st.rerun()
-    
+
     st.divider()
-    
+
     # API Status
     health = api_get("/health")
     if health and health.get("status") == "healthy":
@@ -155,27 +175,31 @@ with st.sidebar:
 if st.session_state.page == "home":
     st.title("Veritas")
     st.subheader("Self-Improving Fact Checker")
-    
-    st.markdown("""
+
+    st.markdown(
+        """
     Pruefe Behauptungen gegen autoritative Quellen:
     
     - **Wikidata** - Strukturierte Daten
     - **Wikipedia** - Enzyklopaedie  
     - **LLM** - Sprachmodell (Groq)
     - **Local KB** - Eigene Knowledge Base
-    """)
-    
+    """
+    )
+
     st.divider()
-    
+
     # Quick Check
     st.subheader("Schnellcheck")
-    claim = st.text_input("Behauptung eingeben:", placeholder="z.B. Deutschland liegt in Europa")
-    
+    claim = st.text_input(
+        "Behauptung eingeben:", placeholder="z.B. Deutschland liegt in Europa"
+    )
+
     if st.button("Pruefen", type="primary", use_container_width=True) and claim:
         st.session_state.claim = claim
         st.session_state.page = "result"
         st.rerun()
-    
+
     # Stats
     st.divider()
     stats = api_get("/learning/facts/stats")
@@ -189,9 +213,11 @@ if st.session_state.page == "home":
 # FACT CHECK
 elif st.session_state.page == "check":
     st.title("Faktencheck")
-    
-    claim = st.text_area("Behauptung:", height=100, placeholder="Gib eine Behauptung ein...")
-    
+
+    claim = st.text_area(
+        "Behauptung:", height=100, placeholder="Gib eine Behauptung ein..."
+    )
+
     if st.button("Pruefen", type="primary", use_container_width=True) and claim:
         st.session_state.claim = claim
         st.session_state.page = "result"
@@ -201,40 +227,46 @@ elif st.session_state.page == "check":
 # RESULT
 elif st.session_state.page == "result":
     st.title("Ergebnis")
-    
+
     claim = st.session_state.claim
     st.info(f'**Behauptung:** "{claim}"')
-    
+
     with st.spinner("Pruefe Fakten..."):
         result = api_post("/factcheck/check", {"claim": claim})
-    
+
     if result:
         verdict = result.get("verdict", "")
         label = result.get("verdict_label", "")
         confidence = result.get("confidence", 0)
-        
+
         # Verdict Card
         css_class = "verdict-true" if verdict == "true" else "verdict-false"
-        st.markdown(f"""
+        st.markdown(
+            f"""
         <div class="verdict-card {css_class}">
             <div class="verdict-label">{label}</div>
             <div style="font-size: 1.2rem; margin-top: 8px;">
                 Konfidenz: {confidence:.0%}
             </div>
         </div>
-        """, unsafe_allow_html=True)
-        
+        """,
+            unsafe_allow_html=True,
+        )
+
         # Explanation
         st.markdown(f"**Erklaerung:** {result.get('explanation', '')}")
-        
+
         # Correction
         if result.get("correction"):
-            st.markdown(f"""
+            st.markdown(
+                f"""
             <div class="correction-box">
                 <strong>Richtig:</strong> {result['correction']}
             </div>
-            """, unsafe_allow_html=True)
-        
+            """,
+                unsafe_allow_html=True,
+            )
+
         # Meta
         st.divider()
         c1, c2, c3, c4 = st.columns(4)
@@ -242,30 +274,33 @@ elif st.session_state.page == "result":
         c2.metric("Zeit", f"{result.get('processing_time_ms', 0)}ms")
         c3.metric("Quellen", result.get("sources_checked", 0))
         c4.metric("Cache", "Ja" if result.get("cached") else "Nein")
-        
+
         # Sources
         c1, c2, c3, c4 = st.columns(4)
         c1.metric("LLM", "Ja" if result.get("llm_used") else "Nein")
         c2.metric("Wikidata", "Ja" if result.get("wikidata_used") else "Nein")
         c3.metric("Wikipedia", "Ja" if result.get("wikipedia_used") else "Nein")
         c4.metric("Local KB", "Ja" if result.get("local_kb_used") else "Nein")
-        
+
         # Evidence
         if result.get("evidence"):
             with st.expander("Evidenz anzeigen"):
                 for e in result["evidence"]:
                     icon = "[+]" if e.get("supports_claim") else "[-]"
                     color = "#4caf50" if e.get("supports_claim") else "#f44336"
-                    st.markdown(f"""
+                    st.markdown(
+                        f"""
                     <div class="info-card">
                         <strong style="color: {color};">{icon} {e.get('source', '')}</strong>
                         ({e.get('confidence', 0):.0%})<br>
                         <span style="color: #9aa0a6;">{e.get('content', '')[:200]}</span>
                     </div>
-                    """, unsafe_allow_html=True)
+                    """,
+                        unsafe_allow_html=True,
+                    )
     else:
         st.error("API nicht erreichbar")
-    
+
     if st.button("Neue Pruefung", use_container_width=True):
         st.session_state.page = "check"
         st.rerun()
@@ -275,9 +310,9 @@ elif st.session_state.page == "result":
 elif st.session_state.page == "kb":
     st.title("Knowledge Base")
     st.caption("Verifizierte Fakten aus autoritativen Quellen")
-    
+
     stats = api_get("/learning/facts/stats")
-    
+
     if stats:
         # Hauptzahlen
         c1, c2, c3 = st.columns(3)
@@ -285,7 +320,7 @@ elif st.session_state.page == "kb":
         by_verdict = stats.get("by_verdict", {})
         c2.metric("TRUE", by_verdict.get("true", 0))
         c3.metric("FALSE", by_verdict.get("false", 0))
-        
+
         # Nach Quelle
         st.divider()
         st.subheader("Nach Quelle")
@@ -294,7 +329,7 @@ elif st.session_state.page == "kb":
             cols = st.columns(len(by_source))
             for i, (src, cnt) in enumerate(by_source.items()):
                 cols[i].metric(src, cnt)
-        
+
         # Nach Typ
         st.subheader("Nach Typ")
         by_type = stats.get("by_type", {})
@@ -302,7 +337,7 @@ elif st.session_state.page == "kb":
             cols = st.columns(len(by_type))
             for i, (typ, cnt) in enumerate(by_type.items()):
                 cols[i].metric(typ, cnt)
-        
+
         # Sample
         st.divider()
         st.subheader("Beispiele")
@@ -311,8 +346,10 @@ elif st.session_state.page == "kb":
             for item in sample["sample"]:
                 verdict = "[TRUE]" if item.get("is_true") else "[FALSE]"
                 color = "#4caf50" if item.get("is_true") else "#f44336"
-                st.markdown(f'<span style="color: {color};">{verdict}</span> {item.get("claim", "")}', 
-                           unsafe_allow_html=True)
+                st.markdown(
+                    f'<span style="color: {color};">{verdict}</span> {item.get("claim", "")}',
+                    unsafe_allow_html=True,
+                )
     else:
         st.warning("Keine Daten. Starte Mining um Fakten zu sammeln.")
 
@@ -321,25 +358,27 @@ elif st.session_state.page == "kb":
 elif st.session_state.page == "mining":
     st.title("Fact Mining")
     st.caption("Extrahiere Fakten aus autoritativen Quellen")
-    
-    st.markdown("""
+
+    st.markdown(
+        """
     Das System lernt automatisch aus:
     - **Wikidata** - Laender, Hauptstaedte, Personen
     - **Wikipedia** - Bekannte Irrtuemer
     - **Adversarial** - Generierte FALSE-Varianten
     
     **Jeder Mining-Lauf holt NEUE Daten** (Offset-Tracking).
-    """)
-    
+    """
+    )
+
     st.divider()
-    
+
     # Status
     stats = api_get("/learning/facts/stats")
     if stats:
         c1, c2 = st.columns(2)
         c1.metric("Fakten in KB", stats.get("total_facts", 0))
         c2.info(f"Storage: {stats.get('storage_path', '')}")
-    
+
     # Test
     st.subheader("1. Verbindungstest")
     if st.button("Wikidata testen"):
@@ -350,35 +389,37 @@ elif st.session_state.page == "mining":
             st.caption(f"Beispiel: {', '.join(test.get('sample', [])[:3])}")
         else:
             st.error(f"Fehler: {test.get('error', 'Unbekannt')}")
-    
+
     st.divider()
-    
+
     # Mining
     st.subheader("2. Mining starten")
     st.warning("Mining kann 1-2 Minuten dauern")
-    
+
     if st.button("Mining starten", type="primary", use_container_width=True):
         with st.spinner("Extrahiere Fakten aus Wikidata, Wikipedia..."):
             result = api_post("/learning/mine")
-        
+
         if result:
             if result.get("success"):
                 total_new = result.get("total_new", 0)
-                
+
                 if total_new > 0:
                     st.success(f"Erfolgreich! {total_new} neue Fakten.")
                 else:
                     st.info("Keine neuen Fakten (bereits vorhanden).")
-                
+
                 # Stats
                 st.subheader("Ergebnis")
                 c1, c2, c3 = st.columns(3)
-                c1.metric("Geografie", result.get("geographic", 0) + result.get("capitals", 0))
+                c1.metric(
+                    "Geografie", result.get("geographic", 0) + result.get("capitals", 0)
+                )
                 c2.metric("Personen", result.get("biographical", 0))
                 c3.metric("Adversarial", result.get("adversarial", 0))
-                
+
                 st.caption(f"Gesamt in KB: {result.get('total_in_db', 0)}")
-                
+
                 # Offsets
                 offsets = result.get("offsets", {})
                 if offsets:
@@ -387,7 +428,7 @@ elif st.session_state.page == "mining":
                         for k, v in offsets.items():
                             if k != "misconceptions_done":
                                 st.text(f"{k}: {v} verarbeitet")
-                
+
                 # Errors
                 if result.get("errors"):
                     with st.expander(f"Fehler ({len(result['errors'])})"):
@@ -400,13 +441,13 @@ elif st.session_state.page == "mining":
                         st.error(e)
         else:
             st.error("API nicht erreichbar")
-    
+
     st.divider()
-    
+
     # Reload KB
     st.subheader("3. Knowledge Base aktualisieren")
     st.caption("Nach Mining sollte die KB im Fact Checker neu geladen werden.")
-    
+
     if st.button("KB neu laden"):
         result = api_post("/learning/reload-kb")
         if result and result.get("success"):

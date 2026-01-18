@@ -39,11 +39,12 @@ router = APIRouter(prefix="/veritas", tags=["Veritas"])
 # Helper function for enum values
 # =============================================================================
 
+
 def get_enum_value(enum_or_str) -> str:
     """Safely get string value from enum or string."""
     if isinstance(enum_or_str, str):
         return enum_or_str
-    return enum_or_str.value if hasattr(enum_or_str, 'value') else str(enum_or_str)
+    return enum_or_str.value if hasattr(enum_or_str, "value") else str(enum_or_str)
 
 
 # =============================================================================
@@ -53,7 +54,7 @@ def get_enum_value(enum_or_str) -> str:
 
 class AnalyzeRequest(BaseModel):
     """Request for analysis."""
-    
+
     text: str = Field(
         ...,
         min_length=5,
@@ -77,7 +78,7 @@ class AnalyzeRequest(BaseModel):
 
 class AnalyzeResponse(BaseModel):
     """Analysis response."""
-    
+
     success: bool
     analysis: Optional[FullAnalysis] = None
     formatted_output: Optional[str] = None
@@ -86,7 +87,7 @@ class AnalyzeResponse(BaseModel):
 
 class QuickCheckRequest(BaseModel):
     """Request for Quick Check."""
-    
+
     claim: str = Field(
         ...,
         min_length=5,
@@ -97,7 +98,7 @@ class QuickCheckRequest(BaseModel):
 
 class QuickCheckResponse(BaseModel):
     """Quick Check response."""
-    
+
     found: bool
     myth_id: Optional[str] = None
     claim: Optional[str] = None
@@ -114,7 +115,7 @@ class QuickCheckResponse(BaseModel):
 
 class MythResponse(BaseModel):
     """Response for a myth."""
-    
+
     id: str
     claim: str
     claim_en: Optional[str] = None
@@ -134,7 +135,7 @@ class MythResponse(BaseModel):
 
 class SearchRequest(BaseModel):
     """Search request."""
-    
+
     query: str = Field(..., min_length=2)
     category: Optional[MythCategory] = None
     era: Optional[HistoricalEra] = None
@@ -143,7 +144,7 @@ class SearchRequest(BaseModel):
 
 class SearchResponse(BaseModel):
     """Search response."""
-    
+
     query: str
     count: int
     results: list[dict]
@@ -151,7 +152,7 @@ class SearchResponse(BaseModel):
 
 class StatsResponse(BaseModel):
     """Database statistics."""
-    
+
     total_myths: int
     total_narratives: int
     myths_by_category: dict[str, int]
@@ -168,37 +169,37 @@ class StatsResponse(BaseModel):
 async def analyze_claim(request: AnalyzeRequest):
     """
     Analyzes a historical claim completely.
-    
+
     Checks:
     - Factual correctness
     - Missing context
     - Narrative patterns
     - Known myths
-    
+
     Returns a detailed verdict with explanation.
     """
     try:
         analyzer = get_analyzer()
-        
+
         analysis = await analyzer.analyze(
             text=request.text,
             deep_analysis=request.deep_analysis,
             language=request.language,
         )
-        
+
         # Formatted output
         formatted = None
         if request.output_format == "markdown":
             formatted = format_analysis_markdown(analysis)
         elif request.output_format == "html":
             formatted = format_analysis_html(analysis)
-        
+
         return AnalyzeResponse(
             success=True,
             analysis=analysis,
             formatted_output=formatted,
         )
-    
+
     except Exception as e:
         logger.error(f"Analysis failed: {e}")
         raise HTTPException(
@@ -211,19 +212,19 @@ async def analyze_claim(request: AnalyzeRequest):
 async def quick_check(request: QuickCheckRequest):
     """
     Quick check against the myths database.
-    
+
     Only checks if the claim matches a known myth.
     No LLM calls, very fast (<100ms).
     """
     try:
         analyzer = get_analyzer()
         result = await analyzer.quick_check(request.claim)
-        
+
         # Wenn gefunden, hole zusätzliche Daten aus der Datenbank
         if result.get("found") and result.get("myth_id"):
             db = get_myths_database()
             myth = db.myths.get(result["myth_id"])
-            
+
             if myth:
                 return QuickCheckResponse(
                     found=True,
@@ -239,10 +240,10 @@ async def quick_check(request: QuickCheckRequest):
                     sources=[s.title for s in myth.sources[:5]] if myth.sources else [],
                     message=result.get("message"),
                 )
-        
+
         # Fallback: Original result
         return QuickCheckResponse(**result)
-    
+
     except Exception as e:
         logger.error(f"Quick check failed: {e}")
         raise HTTPException(
@@ -259,26 +260,28 @@ async def list_myths(
 ):
     """
     Lists myths from the database.
-    
+
     Optionally filterable by category and era.
     Returns object with 'myths' key for consistency.
     """
     db = get_myths_database()
-    
+
     myths = list(db.myths.values())
-    
+
     # Filter
     if category:
-        myths = [m for m in myths if get_enum_value(m.category) == get_enum_value(category)]
+        myths = [
+            m for m in myths if get_enum_value(m.category) == get_enum_value(category)
+        ]
     if era:
         myths = [m for m in myths if get_enum_value(m.era) == get_enum_value(era)]
-    
+
     # Sort by popularity
     myths.sort(key=lambda m: m.popularity, reverse=True)
-    
+
     # Limit
     myths = myths[:limit]
-    
+
     return {
         "count": len(myths),
         "myths": [
@@ -292,13 +295,17 @@ async def list_myths(
                 "popularity": m.popularity,
                 "keywords": m.keywords[:5] if m.keywords else [],
                 "related_myths": m.related_myths[:3] if m.related_myths else [],
-                "origin": {
-                    "date": m.origin.date if m.origin else None,
-                    "source": m.origin.source if m.origin else None,
-                } if m.origin else None,
+                "origin": (
+                    {
+                        "date": m.origin.date if m.origin else None,
+                        "source": m.origin.source if m.origin else None,
+                    }
+                    if m.origin
+                    else None
+                ),
             }
             for m in myths
-        ]
+        ],
     }
 
 
@@ -309,13 +316,13 @@ async def get_myth(myth_id: str):
     """
     db = get_myths_database()
     myth = db.get_myth(myth_id)
-    
+
     if not myth:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Myth '{myth_id}' not found",
         )
-    
+
     return MythResponse(
         id=myth.id,
         claim=myth.claim,
@@ -349,19 +356,25 @@ async def search_myths(request: SearchRequest):
     Searches the myths database.
     """
     db = get_myths_database()
-    
+
     # Text search
     results = db.search_myths(request.query)
-    
+
     # Filter
     if request.category:
-        results = [m for m in results if get_enum_value(m.category) == get_enum_value(request.category)]
+        results = [
+            m
+            for m in results
+            if get_enum_value(m.category) == get_enum_value(request.category)
+        ]
     if request.era:
-        results = [m for m in results if get_enum_value(m.era) == get_enum_value(request.era)]
-    
+        results = [
+            m for m in results if get_enum_value(m.era) == get_enum_value(request.era)
+        ]
+
     # Limit
-    results = results[:request.limit]
-    
+    results = results[: request.limit]
+
     return SearchResponse(
         query=request.query,
         count=len(results),
@@ -384,26 +397,24 @@ async def get_stats():
     Returns statistics about the database.
     """
     db = get_myths_database()
-    
+
     # Count by category
     by_category = {}
     for myth in db.myths.values():
         cat = get_enum_value(myth.category)
         by_category[cat] = by_category.get(cat, 0) + 1
-    
+
     # Count by era
     by_era = {}
     for myth in db.myths.values():
         era = get_enum_value(myth.era)
         by_era[era] = by_era.get(era, 0) + 1
-    
+
     # Most popular myths
-    sorted_myths = sorted(
-        db.myths.values(),
-        key=lambda m: m.popularity,
-        reverse=True
-    )[:5]
-    
+    sorted_myths = sorted(db.myths.values(), key=lambda m: m.popularity, reverse=True)[
+        :5
+    ]
+
     return StatsResponse(
         total_myths=len(db.myths),
         total_narratives=len(db.narratives),
@@ -422,7 +433,7 @@ async def list_narratives():
     Lists known narrative patterns.
     """
     db = get_myths_database()
-    
+
     return [
         {
             "id": n.id,
